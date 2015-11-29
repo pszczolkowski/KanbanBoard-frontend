@@ -1,0 +1,14 @@
+<ul class="left" ng-show="!steps[steps.length-1].ncyBreadcrumb.hide">
+	<li class="valign-wrapper" ng-class="{'active': steps.length === 0}">
+		<a ui-sref="dashboard">
+			Home
+		</a>
+		<span class="fa fa-chevron-right right valign" ng-show="steps.length !== 0"></span>
+	</li>
+	<li class="valign-wrapper" ng-repeat="step in steps track by $index" ng-class="{'active': $last}">
+		<a href="{{step.ncyBreadcrumbLink}}">
+			{{step.ncyBreadcrumbLabel}}
+		</a>
+		<span class="fa fa-chevron-right right valign" ng-if="!$last"></span>
+	</li>
+</ul>

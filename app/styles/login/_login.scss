@@ -1,0 +1,12 @@
+@media #{$medium-and-up} {
+	#login-form-wrapper {
+		display: block;
+		float: none;
+		margin: {
+			left: auto;
+			right: auto;
+		}
+		max-width: 400px;
+		width: 400px
+	}
+}

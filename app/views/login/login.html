@@ -1,0 +1,46 @@
+<div class="row">
+	<div id="login-form-wrapper" class="col s12">
+
+		<div class="card white">
+			<div class="card-content">
+
+				<img class="circle center" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+
+				<div class="card-panel red white-text" ng-show="authenticationError">
+					Invalid login or password
+				</div>
+
+				<form ng-submit="signin($event)">
+
+					<div class="row row-compact">
+						<div class="col s12" input-field>
+							<input type="text" id="login" ng-model="credentials.login" required autofocus/>
+							<label for="login">Login</label>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col s12" input-field>
+							<input type="password" id="password" ng-model="credentials.password" required>
+							<label for="password">Password</label>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col s12">
+							<button class="btn btn-block blue waves-effect waves-light" type="submit">Sign in</button>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col s12">
+							<a ui-sref="register">or sign up</a>
+						</div>
+					</div>
+
+				</form>
+			</div>
+		</div>
+
+	</div>
+</div>

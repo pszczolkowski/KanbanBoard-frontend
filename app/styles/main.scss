@@ -1,0 +1,94 @@
+$roboto-font-path: "../bower_components/materialize/font/roboto/" !default;
+$fa-font-path: "../bower_components/components-font-awesome/fonts" !default;
+
+// bower:scss
+@import "components-font-awesome/scss/font-awesome.scss";
+@import "materialize/sass/materialize.scss";
+// endbower
+
+@import "login/login";
+
+.btn-block {
+	display: block;
+	width: 100%;
+}
+
+.center {
+	display: block;
+	margin: {
+		left: auto;
+		right: auto;
+	}
+}
+
+.row-compact {
+	margin-bottom: 0;
+}
+
+.input-field div.error-message{
+	color: color("red", "base");
+	font-size: 11px;
+	margin-bottom: 12px;
+	margin-top: -12px;
+}
+
+// fix for Angular Toaster due to conflicts with MAterialize
+#toast-container {
+	bottom: 12px;
+	min-width: unset;
+	left: 12px;
+	right: auto;
+	top: auto;
+}
+.toast {
+	display: block;
+}
+
+#navbar {
+	margin-bottom: 10px;
+}
+
+$loading-bar-color: color("red", "base");
+
+#loading-bar .bar {
+	background: $loading-bar-color;
+}
+
+// Fancy blur effect
+#loading-bar .peg {
+	-moz-box-shadow: $loading-bar-color 1px 0 6px 1px;
+	-ms-box-shadow: $loading-bar-color 1px 0 6px 1px;
+	-webkit-box-shadow: $loading-bar-color 1px 0 6px 1px;
+	box-shadow: $loading-bar-color 1px 0 6px 1px;
+}
+
+// Fix for ngAnimate with ngRepeat when repeated elements
+// have transition set. ngAnimate will not wait for
+// short period of time to remove DOM nodes
+nav ul li {
+	&.ng-enter,
+	&.ng-leave {
+		--webkit-transition: none;
+		transition: none;
+	}
+	&.ng-animate {
+		--webkit-transition: none;
+		transition: none;
+	}
+}
+
+// Materialize fixes
+.btn-flat.disabled {
+	color: #b3b3b3 !important;
+}
+
+.btn[disabled] {
+	@extend .disabled;
+}
+.btn-flat[disabled] {
+	@extend .btn-flat.disabled;
+}
+
+button.btn-flat:focus {
+	background-color: unset;
+}
