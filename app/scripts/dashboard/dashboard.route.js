@@ -8,6 +8,8 @@
 	DashboardRouteProvider.$inject = ['$stateProvider'];
 
 	function DashboardRouteProvider($stateProvider) {
+		var resolveBoards = ['Board', loadBoards];
+
 		$stateProvider.state('dashboard', {
 			parent: 'root',
 			url: '/',
@@ -15,7 +17,15 @@
 			controller: 'DashboardController',
 			ncyBreadcrumb: {
 				skip: true
+			},
+			resolve: {
+				boards: resolveBoards
 			}
 		});
+
+
+		function loadBoards(Board) {
+			return Board.query().$promise;
+		}
 	}
 })();
