@@ -1,0 +1,28 @@
+#table {
+	td {
+		border: 1px solid #d0d0d0;
+	}
+
+	th {
+		border: 1px solid #d0d0d0;
+		padding: 5px;
+		text-align: center;
+
+		small {
+			font-weight: normal;
+		}
+	}
+}
+
+.task {
+	border: 1px solid #d0d0d0;
+	margin: 5px;
+
+	header {
+		min-height: 20px;
+	}
+
+	section {
+		padding: 5px;
+	}
+}

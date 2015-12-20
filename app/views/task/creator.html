@@ -1,0 +1,76 @@
+<div class="modal-content">
+
+	<h4>Create new board</h4>
+
+	<form name="newTaskForm">
+
+		<div class="row row-compact">
+			<div class="col s12" input-field>
+				<input type="text"
+					   id="task-creator-input-task-title"
+					   name="title"
+					   ng-model="task.title"
+					   ng-minlength="2"
+					   ng-maxlength="500"
+					   required autofocus/>
+				<label for="task-creator-input-task-title">Title</label>
+
+				<div class="error-message">
+					<p ng-show="newTaskForm.title.$dirty && newTaskForm.title.$error.minlength">
+						Too short (minimum 2 characters)
+					</p>
+					<p ng-show="newTaskForm.title.$dirty && newTaskForm.title.$error.maxlength">
+						Too long (maximum 500 characters)
+					</p>
+					<p ng-show="newTaskForm.title.$dirty && newTaskForm.title.$error.required">
+						Title is required
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="row row-compact">
+			<div class="col s12" input-field>
+				<textarea id="task-creator-input-task-description"
+						  class="materialize-textarea"
+						  name="description"
+						  ng-model="task.description"
+						  ng-maxlength="10000">
+				</textarea>
+				<label for="task-creator-input-task-description">Description</label>
+
+				<div class="error-message">
+					<p ng-show="newTaskForm.description.$dirty && newTaskForm.description.$error.maxlength">
+						Too long (maximum 10000 characters)
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="row row-compact">
+			<div class="col s12" input-field>
+				<select id="task-creator-select-column"
+						ng-model="task.columnId"
+						ng-options="column.id as column.name for column in columns"
+						material-select>
+					<option value="column.id">{{column.name}}</option>
+				</select>
+				<label for="task-creator-select-column">Column</label>
+			</div>
+		</div>
+
+	</form>
+
+</div>
+
+<div class="modal-footer">
+	<button class="waves-effect waves-green btn-flat green-text"
+			ng-click="create()"
+			ng-disabled="newBoardForm.$invalid">
+		Create
+	</button>
+	<button class="waves-effect waves-red btn-flat red-text"
+			ng-click="$dismiss()">
+		Cancel
+	</button>
+</div>

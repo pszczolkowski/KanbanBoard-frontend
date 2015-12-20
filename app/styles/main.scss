@@ -6,6 +6,7 @@ $fa-font-path: "../bower_components/components-font-awesome/fonts" !default;
 @import "materialize/sass/materialize.scss";
 // endbower
 
+@import "board/board";
 @import "login/login";
 @import "modal/modal";
 

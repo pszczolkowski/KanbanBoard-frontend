@@ -1,0 +1,47 @@
+<div class="modal-content">
+
+	<h4>Create new board</h4>
+
+	<form name="newBoardForm">
+
+		<div class="row row-compact">
+			<div class="col s12" input-field>
+				<input type="text"
+					   id="board-creator-input-board-name"
+					   name="name"
+					   ng-model="board.name"
+					   ng-minlength="3"
+					   ng-maxlength="50"
+					   length="50"
+					   required autofocus/>
+				<label for="board-creator-input-board-name">Name</label>
+
+				<div class="error-message">
+					<p ng-show="newBoardForm.name.$dirty && newBoardForm.name.$error.minlength">
+						Too short (minimum 3 characters)
+					</p>
+					<p ng-show="newBoardForm.name.$dirty && newBoardForm.name.$error.maxlength">
+						Too long (maximum 50 characters)
+					</p>
+					<p ng-show="newBoardForm.name.$dirty && newBoardForm.name.$error.required">
+						Name is required
+					</p>
+				</div>
+			</div>
+		</div>
+
+	</form>
+
+</div>
+
+<div class="modal-footer">
+	<button class="waves-effect waves-green btn-flat green-text"
+			ng-click="create()"
+			ng-disabled="newBoardForm.$invalid">
+		Create
+	</button>
+	<button class="waves-effect waves-red btn-flat red-text"
+			ng-click="$dismiss()">
+		Cancel
+	</button>
+</div>
