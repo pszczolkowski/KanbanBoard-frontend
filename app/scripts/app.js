@@ -4,6 +4,7 @@
 	angular
 		.module('kanbanBoardApp', [
 			'angular-loading-bar',
+			'as.sortable',
 			'LocalStorageModule',
 			'ncy-angular-breadcrumb',
 			'ngAnimate',

@@ -1,32 +1,33 @@
 {
-	"name": "KanbanBoard",
-	"version": "0.0.1",
-	"dependencies": {
-		"angular": "~1.4.3",
-		"angular-animate": "~1.4.7",
-		"angular-bootstrap": "~0.14.2",
-		"angular-cookies": "~1.4.3",
-		"angular-resource": "~1.4.3",
-		"angular-ui-router": "~0.2.15",
-		"AngularJS-Toaster": "angularjs-toaster#~0.4.15",
-		"components-font-awesome": "~4.4.0",
-		"angular-local-storage": "~0.2.3",
-		"Materialize": "materialize#~0.97.3",
-		"angular-materialize": "*",
-		"angular-loading-bar": "~0.8.0",
-		"angular-breadcrumb": "~0.4.1"
-	},
-	"devDependencies": {
-		"angular-mocks": "~1.4.3"
-	},
-	"appPath": "app",
-	"moduleName": "kanbanBoardApp",
-	"overrides": {
-		"materialize": {
-			"main": [
-				"bin/materialize.js",
-				"sass/*"
-			]
-		}
-	}
+  "name": "KanbanBoard",
+  "version": "0.0.1",
+  "dependencies": {
+    "angular": "~1.4.3",
+    "angular-animate": "~1.4.7",
+    "angular-bootstrap": "~0.14.2",
+    "angular-cookies": "~1.4.3",
+    "angular-resource": "~1.4.3",
+    "angular-ui-router": "~0.2.15",
+    "AngularJS-Toaster": "angularjs-toaster#~0.4.15",
+    "components-font-awesome": "~4.4.0",
+    "angular-local-storage": "~0.2.3",
+    "Materialize": "materialize#~0.97.3",
+    "angular-materialize": "*",
+    "angular-loading-bar": "~0.8.0",
+    "angular-breadcrumb": "~0.4.1",
+    "ng-sortable": "~1.3.2"
+  },
+  "devDependencies": {
+    "angular-mocks": "~1.4.3"
+  },
+  "appPath": "app",
+  "moduleName": "kanbanBoardApp",
+  "overrides": {
+    "Materialize": {
+      "main": [
+        "bin/materialize.js",
+        "sass/*"
+      ]
+    }
+  }
 }
