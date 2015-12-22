@@ -27,13 +27,19 @@
 	</thead>
 	<tbody>
 		<tr>
-			<td ng-repeat="column in columns track by column.id">
-				<div class="task" ng-repeat="task in column.tasks track by task.id">
-					<header style="background-color: {{labels[task.labelId].color}}"></header>
-					<section>
-						{{task.title}}
-						{{task.labelId}}
-					</section>
+			<td ng-repeat="column in columns track by column.id"
+				as-sortable="dragListeners"
+				ng-model="column.tasks">
+				<div class="task"
+					 ng-repeat="task in column.tasks track by task.id"
+					 as-sortable-item>
+					<div as-sortable-item-handle>
+						<header style="background-color: {{labels[task.labelId].color}}"></header>
+						<section>
+							{{task.title}}
+							{{task.labelId}}
+						</section>
+					</div>
 				</div>
 			</td>
 		</tr>

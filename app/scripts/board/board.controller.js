@@ -11,13 +11,18 @@
 		'Column',
 		'columns',
 		'labels',
+		'Task',
 		'TaskCreator',
 		'toaster'];
 
-	function BoardController($scope, board, Column, columns, labels, TaskCreator, toaster) {
+	function BoardController($scope, board, Column, columns, labels, Task, TaskCreator, toaster) {
 		$scope.board = board;
 		$scope.columns = columns;
 		$scope.labels = prepareLabelsFrom(labels);
+		$scope.dragListeners = {
+			itemMoved: onTaskMove,
+			orderChanged: onTaskMove
+		};
 		$scope.openTaskCreator = openTaskCreator;
 
 
@@ -50,6 +55,20 @@
 					}
 				}
 			});
+		}
+
+		function onTaskMove(event) {
+			var task = event.source.itemScope.modelValue;
+			var column = event.dest.sortableScope.$parent.column;
+			var position = event.dest.index;
+
+			Task.move({
+				taskId: task.id,
+				columnId: column.id,
+				position: position
+			}).$promise.finally(function () {
+					reloadColumn(column.id);
+				});
 		}
 	}
 })();

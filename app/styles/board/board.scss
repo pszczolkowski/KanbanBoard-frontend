@@ -1,6 +1,10 @@
 #table {
+	background-color: white;
+	table-layout: fixed;
+
 	td {
 		border: 1px solid #d0d0d0;
+		vertical-align: top;
 	}
 
 	th {
@@ -15,6 +19,7 @@
 }
 
 .task {
+	background-color: white;
 	border: 1px solid #d0d0d0;
 	margin: 5px;
 
