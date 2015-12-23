@@ -1,0 +1,62 @@
+<div class="modal-content">
+
+	<form name="taskDetailsForm">
+
+		<div class="row row-compact">
+			<div class="col s12" input-field>
+				<input type="text"
+					   id="task-details-input-task-title"
+					   name="title"
+					   ng-model="task.title"
+					   ng-minlength="2"
+					   ng-maxlength="500"
+					   required/>
+				<label for="task-details-input-task-title">Title</label>
+
+				<div class="error-message">
+					<p ng-show="taskDetailsForm.title.$dirty && taskDetailsForm.title.$error.minlength">
+						Too short (minimum 2 characters)
+					</p>
+					<p ng-show="taskDetailsForm.title.$dirty && taskDetailsForm.title.$error.maxlength">
+						Too long (maximum 500 characters)
+					</p>
+					<p ng-show="taskDetailsForm.title.$dirty && taskDetailsForm.title.$error.required">
+						Title is required
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="row row-compact">
+			<div class="col s12" input-field>
+				<textarea id="task-details-input-task-description"
+						  class="materialize-textarea"
+						  name="description"
+						  ng-model="task.description"
+						  ng-maxlength="10000">
+				</textarea>
+				<label for="task-details-input-task-description">Description</label>
+
+				<div class="error-message">
+					<p ng-show="taskDetailsForm.description.$dirty && taskDetailsForm.description.$error.maxlength">
+						Too long (maximum 10000 characters)
+					</p>
+				</div>
+			</div>
+		</div>
+
+	</form>
+
+</div>
+
+<div class="modal-footer">
+	<button class="waves-effect waves-green btn-flat green-text"
+			ng-click="save()"
+			ng-disabled="taskDetailsForm.$pristine || taskDetailsForm.$invalid">
+		Save
+	</button>
+	<button class="waves-effect waves-red btn-flat red-text"
+			ng-click="$dismiss()">
+		Cancel
+	</button>
+</div>

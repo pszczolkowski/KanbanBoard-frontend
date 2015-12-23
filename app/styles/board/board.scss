@@ -1,3 +1,7 @@
+#board-table-wrapper {
+	padding: 0 10px;
+}
+
 #table {
 	background-color: white;
 	table-layout: fixed;
@@ -30,4 +34,8 @@
 	section {
 		padding: 5px;
 	}
+}
+
+.as-sortable-dragging > div {
+	box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }

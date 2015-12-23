@@ -11,38 +11,40 @@
 	</div>
 </div>
 
-<table id="table">
-	<thead>
+<div id="board-table-wrapper" class="center-align">
+	<table id="table" class="z-depth-1">
+		<thead>
 		<tr>
 			<th ng-repeat="column in columns track by column.id">
 				{{column.name}}
 				<small>
-						[{{column.tasks.length}}<!--
+					[{{column.tasks.length}}<!--
 					--><span ng-if="column.workInProgressLimit > 0">
 						/ {{column.workInProgressLimit}}
 					</span>]
 				</small>
 			</th>
 		</tr>
-	</thead>
-	<tbody>
+		</thead>
+		<tbody>
 		<tr>
 			<td ng-repeat="column in columns track by column.id"
 				as-sortable="dragListeners"
 				ng-model="column.tasks">
 				<div class="task"
 					 ng-repeat="task in column.tasks track by task.id"
+					 ng-click="openTaskDetails(task)"
 					 as-sortable-item>
 					<div as-sortable-item-handle>
 						<header style="background-color: {{labels[task.labelId].color}}"></header>
 						<section>
 							{{task.title}}
-							{{task.labelId}}
 						</section>
 					</div>
 				</div>
 			</td>
 		</tr>
-	</tbody>
-</table>
+		</tbody>
+	</table>
+</div>
 

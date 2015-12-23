@@ -13,9 +13,10 @@
 		'labels',
 		'Task',
 		'TaskCreator',
+		'TaskDetails',
 		'toaster'];
 
-	function BoardController($scope, board, Column, columns, labels, Task, TaskCreator, toaster) {
+	function BoardController($scope, board, Column, columns, labels, Task, TaskCreator, TaskDetails, toaster) {
 		$scope.board = board;
 		$scope.columns = columns;
 		$scope.labels = prepareLabelsFrom(labels);
@@ -24,7 +25,7 @@
 			orderChanged: onTaskMove
 		};
 		$scope.openTaskCreator = openTaskCreator;
-
+		$scope.openTaskDetails = openTaskDetails;
 
 
 		function prepareLabelsFrom(labels) {
@@ -69,6 +70,16 @@
 			}).$promise.finally(function () {
 					reloadColumn(column.id);
 				});
+		}
+
+		function openTaskDetails(task) {
+			TaskDetails.open({
+				task: task,
+				columns: $scope.columns
+			}).then(function () {
+				toaster.pop('success', 'Task saved');
+				reloadColumn(task.columnId);
+			});
 		}
 	}
 })();
