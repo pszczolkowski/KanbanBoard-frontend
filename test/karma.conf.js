@@ -31,7 +31,6 @@ module.exports = function(config) {
       'bower_components/angular-ui-router/release/angular-ui-router.js',
       'bower_components/AngularJS-Toaster/toaster.js',
       'bower_components/angular-local-storage/dist/angular-local-storage.js',
-      'bower_components/Materialize/bin/materialize.js',
       'bower_components/materialize/bin/materialize.js',
       'bower_components/angular-materialize/src/angular-materialize.js',
       'bower_components/angular-loading-bar/build/loading-bar.js',

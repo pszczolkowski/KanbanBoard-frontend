@@ -11,7 +11,7 @@
     "AngularJS-Toaster": "angularjs-toaster#~0.4.15",
     "components-font-awesome": "~4.4.0",
     "angular-local-storage": "~0.2.3",
-    "Materialize": "materialize#~0.97.3",
+    "materialize": "materialize#~0.97.3",
     "angular-materialize": "*",
     "angular-loading-bar": "~0.8.0",
     "angular-breadcrumb": "~0.4.1",
@@ -23,7 +23,17 @@
   "appPath": "app",
   "moduleName": "kanbanBoardApp",
   "overrides": {
-    "Materialize": {
+    "components-font-awesome": {
+	  "main": [
+		"scss/font-awesome.scss",
+		"fonts/fontawesome-webfont.eot",
+		"fonts/fontawesome-webfont.woff",
+		"fonts/fontawesome-webfont.woff2",
+		"fonts/fontawesome-webfont.ttf",
+		"fonts/fontawesome-webfont.svg"
+	  ]
+	},
+    "materialize": {
       "main": [
         "bin/materialize.js",
         "sass/*"
