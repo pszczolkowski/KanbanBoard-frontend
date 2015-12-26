@@ -8,6 +8,11 @@
 	Board.$inject = ['$resource', 'config'];
 
 	function Board($resource, config) {
-		return $resource(config.apiUrl + '/board/:boardId');
+		return $resource(config.apiUrl + '/board/:boardId', {}, {
+			inviteUser: {
+				url: config.apiUrl + '/board/inviteUser',
+				method: 'POST'
+			}
+		});
 	}
 })();

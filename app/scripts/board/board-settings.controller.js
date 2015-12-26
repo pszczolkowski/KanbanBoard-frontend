@@ -7,14 +7,18 @@
 
 	BoardSettingsController.$inject = [
 		'$scope',
+		'Board',
 		'board',
 		'Column',
-		'columns'];
+		'columns',
+		'toaster',
+		'UserInvitingModal'];
 
-	function BoardSettingsController($scope, board, Column, columns) {
+	function BoardSettingsController($scope, Board, board, Column, columns, toaster, UserInvitingModal) {
 		$scope.board = board;
 		$scope.columns = columns;
 		$scope.addColumn = addColumn;
+		$scope.openUserInvitingModal = openUserInvitingModal;
 
 
 		function addColumn() {
@@ -23,6 +27,23 @@
 			column.boardId = $scope.board.id;
 
 			column.$save();
+		}
+
+		function openUserInvitingModal() {
+			UserInvitingModal.open({
+				board: $scope.board
+			}).then(function () {
+				toaster.pop('success', 'User invited');
+				reloadBoard();
+			});
+		}
+
+		function reloadBoard() {
+			Board.get({
+				boardId: $scope.board.id
+			}).$promise.then(function (board) {
+					$scope.board = board;
+				});
 		}
 	}
 })();

@@ -1,0 +1,39 @@
+<div class="modal-content">
+
+	<h4>Invite user</h4>
+
+	<form name="inviteUserForm">
+
+		<div class="row row-compact">
+			<div class="col s12" input-field>
+				<input type="text"
+					   id="invite-user-modal-input-user-name"
+					   name="username"
+					   ng-model="user.login"
+					   ng-minlength="3"
+					   required autofocus/>
+				<label for="invite-user-modal-input-user-name">User login</label>
+
+				<div class="error-message">
+					<p ng-show="inviteUserForm.username.$dirty && inviteUserForm.username.$error.minlength">
+						Too short (minimum 3 characters)
+					</p>
+				</div>
+			</div>
+		</div>
+
+	</form>
+
+</div>
+
+<div class="modal-footer">
+	<button class="waves-effect waves-green btn-flat green-text"
+			ng-click="invite()"
+			ng-disabled="inviteUserForm.$invalid">
+		Invite
+	</button>
+	<button class="waves-effect waves-red btn-flat red-text"
+			ng-click="$dismiss()">
+		Cancel
+	</button>
+</div>
