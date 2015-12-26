@@ -31,11 +31,24 @@
 						   data-activates='board-settings-members-user-options-{{::member.id}}'
 						   data-alignment="right"
 						   data-constrainwidth="false"
+						   ng-if="member.userId !== identity.id"
 						   dropdown>
 							<i class="fa fa-ellipsis-v fa-lg grey-text"></i>
 						</a>
 						<ul id='board-settings-members-user-options-{{::member.id}}' class='dropdown-content'>
-							<li ng-if="member.userId !== identity.id">
+							<li ng-if="member.permissions === 'ADMIN'">
+								<a href="" ng-click="revokeAdministratorRole(member)">
+									<span class="fa fa-user-times"></span>
+									revoke administrator role
+								</a>
+							</li>
+							<li ng-if="member.permissions !== 'ADMIN'">
+								<a href="" ng-click="grantAdministratorRole(member)">
+									<span class="fa fa-user-plus"></span>
+									grant administrator role
+								</a>
+							</li>
+							<li>
 								<a href="" ng-click="removeMember(member)">
 									<span class="fa fa-times"></span>
 									remove

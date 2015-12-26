@@ -16,6 +16,10 @@
 			removeMember: {
 				url: config.apiUrl + '/board/:boardId/member/:userId',
 				method: 'DELETE'
+			},
+			setPermissions: {
+				url: config.apiUrl + '/board/member/permissions',
+				method: 'POST'
 			}
 		});
 	}

@@ -22,6 +22,8 @@
 		$scope.addColumn = addColumn;
 		$scope.openUserInvitingModal = openUserInvitingModal;
 		$scope.removeMember = removeMember;
+		$scope.revokeAdministratorRole = revokeAdministratorRole;
+		$scope.grantAdministratorRole = grantAdministratorRole;
 
 
 		function addColumn() {
@@ -49,6 +51,10 @@
 				});
 		}
 
+		function handleError() {
+			toaster.pop('error', 'Some error occurred');
+		}
+
 		function removeMember(user) {
 			Board.removeMember({
 				boardId: $scope.board.id,
@@ -56,9 +62,29 @@
 			}).$promise.then(function () {
 					toaster.pop('success', 'Member has been removed');
 					reloadBoard();
-				}, function () {
-					toaster.pop('error', 'Some error occurred');
-				});
+				}, handleError);
+		}
+
+		function revokeAdministratorRole(member) {
+			Board.setPermissions({
+				memberId: member.id,
+				boardId: $scope.board.id,
+				permissions: 'NORMAL'
+			}).$promise.then(function () {
+					toaster.pop('success', 'Administrator role revoked');
+					reloadBoard();
+				}, handleError);
+		}
+
+		function grantAdministratorRole(member) {
+			Board.setPermissions({
+				memberId: member.id,
+				boardId: $scope.board.id,
+				permissions: 'ADMIN'
+			}).$promise.then(function () {
+					toaster.pop('success', 'Administrator role granted');
+					reloadBoard();
+				}, handleError);
 		}
 	}
 })();
