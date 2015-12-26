@@ -3,27 +3,38 @@
 
 	angular
 		.module('kanbanBoardApp')
-		.config(BoardRouteProvider);
+		.config(BoardSettingsRouteProvider);
 
-	BoardRouteProvider.$inject = ['$stateProvider'];
+	BoardSettingsRouteProvider.$inject = ['$stateProvider'];
 
-	function BoardRouteProvider($stateProvider) {
+	function BoardSettingsRouteProvider($stateProvider) {
 		var resolveBoard = ['$stateParams', 'Board', loadBoard];
 		var resolveColumns = ['$stateParams', 'Column', loadColumns];
 		var resolveLabels = ['$stateParams', 'Label', loadLabels];
 
-		$stateProvider.state('board', {
+		$stateProvider.state('boardSettings', {
 			parent: 'root',
-			url: '/board/{boardId:int}',
-			templateUrl: 'views/board/board.html',
-			controller: 'BoardController',
+			url: '/board/{boardId:int}/settings',
+			views: {
+				'': {
+					templateUrl: 'views/boardSettings/settings.html'
+				},
+				'board-settings-board@boardSettings': {
+					controller: 'BoardSettingsController',
+					templateUrl: 'views/boardSettings/board.html'
+				},
+				'board-settings-members@boardSettings': {
+					controller: 'BoardMembersSettingsController',
+					templateUrl: 'views/boardSettings/members.html'
+				}
+			},
 			ncyBreadcrumb: {
-				label: 'Board'
+				label: 'Settings',
+				parent: 'board'
 			},
 			resolve: {
 				board: resolveBoard,
-				columns: resolveColumns,
-				labels: resolveLabels
+				columns: resolveColumns
 			}
 		});
 

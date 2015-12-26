@@ -3,36 +3,24 @@
 
 	angular
 		.module('kanbanBoardApp')
-		.controller('BoardSettingsController', BoardSettingsController);
+		.controller('BoardMembersSettingsController', BoardMembersSettingsController);
 
-	BoardSettingsController.$inject = [
+	BoardMembersSettingsController.$inject = [
 		'$scope',
 		'Board',
 		'board',
-		'Column',
-		'columns',
 		'identity',
 		'toaster',
 		'UserInvitingModal'];
 
-	function BoardSettingsController($scope, Board, board, Column, columns, identity, toaster, UserInvitingModal) {
+	function BoardMembersSettingsController($scope, Board, board, identity, toaster, UserInvitingModal) {
 		$scope.board = board;
-		$scope.columns = columns;
 		$scope.identity = identity;
-		$scope.addColumn = addColumn;
 		$scope.openUserInvitingModal = openUserInvitingModal;
 		$scope.removeMember = removeMember;
 		$scope.revokeAdministratorRole = revokeAdministratorRole;
 		$scope.grantAdministratorRole = grantAdministratorRole;
 
-
-		function addColumn() {
-			var column = new Column();
-			column.name = $scope.columnName;
-			column.boardId = $scope.board.id;
-
-			column.$save();
-		}
 
 		function openUserInvitingModal() {
 			UserInvitingModal.open({
@@ -86,5 +74,6 @@
 					reloadBoard();
 				}, handleError);
 		}
+
 	}
 })();

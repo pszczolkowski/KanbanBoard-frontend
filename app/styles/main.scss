@@ -59,6 +59,14 @@ ul.collection.optionsable {
 	}
 }
 
+.manual-collapsible li.active .collapsible-body {
+	display: block;
+}
+
+.action-icon {
+	margin-right: 10px;
+}
+
 // fix for Angular Toaster due to conflicts with Materialize
 #toast-container {
 	bottom: 12px;
