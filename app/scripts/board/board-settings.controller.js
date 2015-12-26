@@ -11,14 +11,17 @@
 		'board',
 		'Column',
 		'columns',
+		'identity',
 		'toaster',
 		'UserInvitingModal'];
 
-	function BoardSettingsController($scope, Board, board, Column, columns, toaster, UserInvitingModal) {
+	function BoardSettingsController($scope, Board, board, Column, columns, identity, toaster, UserInvitingModal) {
 		$scope.board = board;
 		$scope.columns = columns;
+		$scope.identity = identity;
 		$scope.addColumn = addColumn;
 		$scope.openUserInvitingModal = openUserInvitingModal;
+		$scope.removeMember = removeMember;
 
 
 		function addColumn() {
@@ -43,6 +46,18 @@
 				boardId: $scope.board.id
 			}).$promise.then(function (board) {
 					$scope.board = board;
+				});
+		}
+
+		function removeMember(user) {
+			Board.removeMember({
+				boardId: $scope.board.id,
+				userId: user.userId
+			}).$promise.then(function () {
+					toaster.pop('success', 'Member has been removed');
+					reloadBoard();
+				}, function () {
+					toaster.pop('error', 'Some error occurred');
 				});
 		}
 	}

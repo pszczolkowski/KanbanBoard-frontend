@@ -12,6 +12,10 @@
 			inviteUser: {
 				url: config.apiUrl + '/board/inviteUser',
 				method: 'POST'
+			},
+			removeMember: {
+				url: config.apiUrl + '/board/:boardId/member/:userId',
+				method: 'DELETE'
 			}
 		});
 	}
