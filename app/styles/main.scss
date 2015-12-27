@@ -89,6 +89,14 @@ $loading-bar-color: color("red", "base");
 	background: $loading-bar-color;
 }
 
+// Angular x-editable
+
+.editable-buttons .btn-flat {
+	height: 3rem;
+	padding-left: 1rem;
+	padding-right: 1rem;
+}
+
 // Fancy blur effect
 #loading-bar .peg {
 	-moz-box-shadow: $loading-bar-color 1px 0 6px 1px;
