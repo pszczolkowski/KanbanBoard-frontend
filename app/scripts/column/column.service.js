@@ -12,6 +12,10 @@
 			move: {
 				url: config.apiUrl + '/column/move',
 				method: 'POST'
+			},
+			delete: {
+				url: config.apiUrl + '/column/delete',
+				method: 'POST'
 			}
 		});
 	}
