@@ -28,5 +28,15 @@
 				</div>
 			</li>
 		</ul>
+
+		<div class="card-panel blue lighten-2 white-text center" ng-show="columns.length === 0">
+			Board has no columns yet
+		</div>
 	</div>
 </div>
+
+<button class="btn-floating btn-large waves-effect waves-light green btn-main"
+		title="Add new column"
+		ng-click="openColumnCreator()">
+	<i class="material-icons">add</i>
+</button>
