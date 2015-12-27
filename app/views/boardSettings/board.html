@@ -1,0 +1,54 @@
+<div class="row">
+	<div class="col s12 m10 push-m1 l6 push-l3">
+		<ul class="collapsible manual-collapsible popout">
+			<li ng-repeat="column in columns track by column.id"
+				ng-class="{'active': expandedColumn.index === $index}">
+				<div class="collapsible-header" ng-click="expandColumn($index)">
+					{{column.name}}
+					<a href="" class="right">
+						<i class="fa" ng-class="{'fa-angle-double-down': expandedColumn.index !== $index,
+														 'fa-angle-double-up': expandedColumn.index === $index}"></i>
+					</a>
+				</div>
+				<div class="collapsible-body column-options">
+					<ul class="collection">
+						<li class="collection-item grey lighten-5">
+							<a href="" ng-click="moveColumnUp($index)">
+								<i class="fa fa-arrow-up fa-lg action-icon"></i>
+								move up
+							</a>
+						</li>
+						<li class="collection-item grey lighten-5">
+							<a href="" ng-click="moveColumnDown($index)">
+								<i class="fa fa-arrow-down fa-lg action-icon"></i>
+								move down
+							</a>
+						</li>
+						<li class="collection-item grey lighten-5">
+							<a href="" editable-number="column.workInProgressLimit" e-min="0" onbeforesave="setWip(column, $data)">
+								<i class="fa fa-pencil fa-lg action-icon"></i>
+								set WIP
+							</a>
+						</li>
+						<li class="collection-item grey lighten-5">
+							<a href="" ng-click="deleteColumn(column)">
+								<i class="fa fa-trash fa-lg action-icon"></i>
+								delete
+							</a>
+						</li>
+					</ul>
+				</div>
+			</li>
+		</ul>
+
+		<div class="card-panel blue lighten-2 white-text center" ng-show="columns.length === 0">
+			Board has no columns yet
+		</div>
+	</div>
+</div>
+
+<button class="btn-floating btn-large waves-effect waves-light green btn-main"
+		title="Add new column"
+		ng-click="openColumnCreator()">
+	<i class="material-icons">add</i>
+</button>

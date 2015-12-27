@@ -1,0 +1,32 @@
+<div class="modal-content">
+
+	<h4>Delete column</h4>
+
+	<p>Select column that tasks will be moved to:</p>
+
+	<form name="deleteColumnForm">
+
+		<div class="row row-compact">
+			<div class="col s12" input-field>
+				<select ng-model="model.columnId"
+						ng-options="column.id as column.name for column in columns"
+						material-select>
+					<option value="column.id">{{column.name}}</option>
+				</select>
+			</div>
+		</div>
+
+	</form>
+
+</div>
+
+<div class="modal-footer">
+	<button class="waves-effect waves-green btn-flat green-text"
+			ng-click="confirm()">
+		Confirm
+	</button>
+	<button class="waves-effect waves-red btn-flat red-text"
+			ng-click="$dismiss()">
+		Cancel
+	</button>
+</div>

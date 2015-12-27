@@ -10,8 +10,9 @@
 			'ngAnimate',
 			'ngCookies',
 			'ngResource',
+			'toaster',
 			'ui.materialize',
 			'ui.router',
-			'toaster'
+			'xeditable'
 		]);
 })();

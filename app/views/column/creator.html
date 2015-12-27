@@ -1,0 +1,64 @@
+<div class="modal-content">
+
+	<h4>Add column</h4>
+
+	<form name="newColumnForm">
+
+		<div class="row row-compact">
+			<div class="col s12" input-field>
+				<input type="text"
+					   id="column-creator-input-column-name"
+					   name="name"
+					   ng-change="errors.duplicatedName = false"
+					   ng-model="column.name"
+					   ng-maxlength="30"
+					   required autofocus/>
+				<label for="column-creator-input-column-name">Name</label>
+
+				<div class="error-message">
+					<p ng-show="newColumnForm.name.$dirty && newColumnForm.name.$error.maxlength">
+						Too long (maximum 30 characters)
+					</p>
+					<p ng-show="newColumnForm.name.$dirty && newColumnForm.name.$error.required">
+						Name is required
+					</p>
+					<p ng-show="errors.duplicatedName">
+						Column with given name already exists
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="row row-compact">
+			<div class="col s12" input-field>
+				<input type="number"
+					   id="column-creator-input-column-wip"
+					   min="0"
+					   name="wip"
+					   ng-model="column.wip"
+					   required />
+				<label for="column-creator-input-column-wip">Work in progress limit</label>
+
+				<div class="error-message">
+					<p ng-show="newColumnForm.wip.$error.min">
+						Only positive numbers are allowed
+					</p>
+				</div>
+			</div>
+		</div>
+
+	</form>
+
+</div>
+
+<div class="modal-footer">
+	<button class="waves-effect waves-green btn-flat green-text"
+			ng-click="add()"
+			ng-disabled="newColumnForm.$invalid">
+		Add
+	</button>
+	<button class="waves-effect waves-red btn-flat red-text"
+			ng-click="$dismiss()">
+		Cancel
+	</button>
+</div>
