@@ -26,6 +26,10 @@
 				'board-settings-members@boardSettings': {
 					controller: 'BoardMembersSettingsController',
 					templateUrl: 'views/boardSettings/members.html'
+				},
+				'board-settings-labels@boardSettings': {
+					controller: 'BoardLabelsSettingsController',
+					templateUrl: 'views/boardSettings/labels.html'
 				}
 			},
 			ncyBreadcrumb: {
@@ -34,7 +38,8 @@
 			},
 			resolve: {
 				board: resolveBoard,
-				columns: resolveColumns
+				columns: resolveColumns,
+				labels: resolveLabels
 			}
 		});
 

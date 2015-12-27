@@ -1,0 +1,38 @@
+<div class="row">
+	<div class="col s12 m10 push-m1 l6 push-l3">
+		<ul class="collection optionsable">
+			<li class="collection-item label-collection-item avatar"
+				ng-repeat="label in labels">
+				<i class="circle" board-label="{{label.color}}"></i>
+				<span>{{label.name}}</span>
+
+				<a href=""
+				   class="options"
+				   data-activates='board-settings-labels-label-options-{{::label.id}}'
+				   data-alignment="right"
+				   data-constrainwidth="false"
+				   dropdown>
+					<i class="fa fa-ellipsis-v fa-lg grey-text"></i>
+				</a>
+				<ul id='board-settings-labels-label-options-{{::label.id}}' class='dropdown-content'>
+					<li>
+						<a href="" ng-click="remove(label)">
+							<span class="fa fa-times"></span>
+							remove
+						</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+
+		<div class="card-panel blue lighten-2 white-text center" ng-show="labels.length === 0">
+			Board has no labels yet
+		</div>
+	</div>
+</div>
+
+<button class="btn-floating btn-large waves-effect waves-light green btn-main"
+		title="add label"
+		ng-click="openLabelCreator()">
+	<i class="material-icons">add</i>
+</button>
