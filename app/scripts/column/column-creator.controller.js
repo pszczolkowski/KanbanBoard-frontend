@@ -26,7 +26,7 @@
 		function add() {
 			var column = new Column();
 			column.name = $scope.column.name;
-			column.workInProgressLimit = $scope.column.wip;
+			column.workInProgressLimit = $scope.column.wip === 0 ? null : $scope.column.wip;
 			column.boardId = board.id;
 
 			column.$save().then(function (createdColumn) {

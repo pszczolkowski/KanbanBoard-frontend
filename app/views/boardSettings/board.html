@@ -25,6 +25,12 @@
 							</a>
 						</li>
 						<li class="collection-item grey lighten-5">
+							<a href="" editable-number="column.workInProgressLimit" e-min="0" onbeforesave="setWip(column, $data)">
+								<i class="fa fa-pencil fa-lg action-icon"></i>
+								set WIP
+							</a>
+						</li>
+						<li class="collection-item grey lighten-5">
 							<a href="" ng-click="deleteColumn(column)">
 								<i class="fa fa-trash fa-lg action-icon"></i>
 								delete

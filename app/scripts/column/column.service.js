@@ -9,6 +9,10 @@
 
 	function Column($resource, config) {
 		return $resource(config.apiUrl + '/column/:columnId', {}, {
+			update: {
+				url: config.apiUrl + '/column',
+				method: 'PUT'
+			},
 			move: {
 				url: config.apiUrl + '/column/move',
 				method: 'POST'

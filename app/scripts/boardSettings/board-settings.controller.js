@@ -25,6 +25,7 @@
 		$scope.moveColumnDown = moveColumnDown;
 		$scope.openColumnCreator = openColumnCreator;
 		$scope.deleteColumn = deleteColumn;
+		$scope.setWip = setWip;
 
 
 		function handleError() {
@@ -111,6 +112,17 @@
 						$scope.expandedColumn.index = null;
 					});
 				}, handleError);
+		}
+
+		function setWip(column, wip) {
+			Column.update({
+				id: column.id,
+				name: column.name,
+				workInProgressLimit: wip === 0 ? null : wip
+			}).$promise.then(function () {
+				toaster.pop('success', 'WIP has been set');
+				reloadColumns();
+			}, handleError);
 		}
 	}
 })();
