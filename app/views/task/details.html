@@ -59,6 +59,18 @@
 			</div>
 		</div>
 
+		<div class="row row-compact">
+			<div class="col s12" input-field>
+				<select id="task-details-select-assignee"
+						ng-model="task.assigneeId"
+						ng-options="member.userId as member.username for member in board.members"
+						material-select>
+					<option value="">None</option>
+				</select>
+				<label for="task-details-select-assignee">Assignee</label>
+			</div>
+		</div>
+
 	</form>
 
 </div>

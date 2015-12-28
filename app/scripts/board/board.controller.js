@@ -77,6 +77,7 @@
 		function openTaskDetails(task) {
 			TaskDetails.open({
 				task: task,
+				board: $scope.board,
 				columns: $scope.columns,
 				labels: labels
 			}).then(function () {

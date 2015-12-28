@@ -20,6 +20,10 @@
 			setLabel: {
 				url: config.apiUrl + '/task/label',
 				method: 'POST'
+			},
+			assignUser: {
+				url: config.apiUrl + '/task/assignUser',
+				method: 'POST'
 			}
 		});
 	}
