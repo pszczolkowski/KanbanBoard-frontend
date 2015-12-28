@@ -39,6 +39,7 @@
 
 		function openTaskCreator() {
 			TaskCreator.open({
+				board: $scope.board,
 				columns: $scope.columns,
 				labels: labels
 			}).then(function (createdTask) {

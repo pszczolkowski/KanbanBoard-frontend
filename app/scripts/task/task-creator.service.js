@@ -19,6 +19,9 @@
 				controller: 'TaskCreatorController',
 				size: 'lg',
 				resolve: {
+					board: function () {
+						return params.board;
+					},
 					columns: function () {
 						return params.columns;
 					},
