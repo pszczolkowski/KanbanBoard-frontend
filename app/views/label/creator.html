@@ -1,0 +1,64 @@
+<div class="modal-content">
+
+	<h4>Add label</h4>
+
+	<form name="newLabelForm">
+
+		<div class="row row-compact">
+			<div class="col s12" input-field>
+				<input type="text"
+					   id="label-creator-input-label-name"
+					   name="name"
+					   ng-change="errors.duplicatedName = false"
+					   ng-model="label.name"
+					   ng-maxlength="100"
+					   required autofocus/>
+				<label for="label-creator-input-label-name">Title</label>
+
+				<div class="error-message">
+					<p ng-show="newLabelForm.title.$dirty && newLabelForm.title.$error.maxlength">
+						Too long (maximum 100 characters)
+					</p>
+					<p ng-show="newLabelForm.title.$dirty && newLabelForm.title.$error.required">
+						Name is required
+					</p>
+					<p ng-show="errors.duplicatedName">
+						Label with given name already exists
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="row row-compact">
+			<div class="col s12" input-field>
+				<input type="text"
+					   id="label-creator-input-label-color"
+					   name="color"
+					   ng-model="label.color"
+					   ng-pattern="'#[a-fA-F0-9]{6}'"
+					   required />
+				<label for="label-creator-input-label-color">Color</label>
+
+				<div class="error-message">
+					<p ng-show="newLabelForm.color.$dirty && newLabelForm.color.$error.pattern">
+						Invalid format
+					</p>
+				</div>
+			</div>
+		</div>
+
+	</form>
+
+</div>
+
+<div class="modal-footer">
+	<button class="waves-effect waves-green btn-flat green-text"
+			ng-click="add()"
+			ng-disabled="newLabelForm.$invalid">
+		Create
+	</button>
+	<button class="waves-effect waves-red btn-flat red-text"
+			ng-click="$dismiss()">
+		Cancel
+	</button>
+</div>
