@@ -22,8 +22,14 @@
 					task: function () {
 						return params.task;
 					},
+					board: function () {
+						return params.board;
+					},
 					columns: function () {
 						return params.columns;
+					},
+					labels: function () {
+						return params.labels;
 					}
 				}
 			}).result;

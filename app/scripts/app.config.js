@@ -57,7 +57,7 @@
 			abstract: true,
 			views: {
 				'content@': {
-					template: '<ui-view />'
+					template: '<div ui-view></div>'
 				},
 				'navbar@': {
 					templateUrl: 'views/navbar/navbar.html',

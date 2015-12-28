@@ -48,14 +48,35 @@
 		</div>
 
 		<div class="row row-compact">
-			<div class="col s12" input-field>
+			<div class="col s6" input-field>
 				<select id="task-creator-select-column"
 						ng-model="task.columnId"
 						ng-options="column.id as column.name for column in columns"
 						material-select>
-					<option value="column.id">{{column.name}}</option>
 				</select>
 				<label for="task-creator-select-column">Column</label>
+			</div>
+
+			<div class="col s6" input-field>
+				<select id="task-creator-select-label"
+						ng-model="task.labelId"
+						ng-options="label.id as label.name for label in labels"
+						material-select>
+					<option value="">None</option>
+				</select>
+				<label for="task-creator-select-label">Label</label>
+			</div>
+		</div>
+
+		<div class="row row-compact">
+			<div class="col s12" input-field>
+				<select id="task-creator-select-assignee"
+						ng-model="task.assigneeId"
+						ng-options="member.userId as member.username for member in board.members"
+						material-select>
+					<option value="">None</option>
+				</select>
+				<label for="task-creator-select-assignee">Assignee</label>
 			</div>
 		</div>
 
@@ -66,7 +87,7 @@
 <div class="modal-footer">
 	<button class="waves-effect waves-green btn-flat green-text"
 			ng-click="create()"
-			ng-disabled="newBoardForm.$invalid">
+			ng-disabled="newTaskForm.$invalid">
 		Create
 	</button>
 	<button class="waves-effect waves-red btn-flat red-text"

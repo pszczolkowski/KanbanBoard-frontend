@@ -1,5 +1,7 @@
 <div class="modal-content">
 
+	<h4>Task details</h4>
+
 	<form name="taskDetailsForm">
 
 		<div class="row row-compact">
@@ -42,6 +44,30 @@
 						Too long (maximum 10000 characters)
 					</p>
 				</div>
+			</div>
+		</div>
+
+		<div class="row row-compact">
+			<div class="col s12" input-field>
+				<select id="task-details-select-label"
+						ng-model="task.labelId"
+						ng-options="label.id as label.name for label in labels"
+						material-select>
+					<option value="">None</option>
+				</select>
+				<label for="task-details-select-label">Label</label>
+			</div>
+		</div>
+
+		<div class="row row-compact">
+			<div class="col s12" input-field>
+				<select id="task-details-select-assignee"
+						ng-model="task.assigneeId"
+						ng-options="member.userId as member.username for member in board.members"
+						material-select>
+					<option value="">None</option>
+				</select>
+				<label for="task-details-select-assignee">Assignee</label>
 			</div>
 		</div>
 

@@ -39,7 +39,9 @@
 
 		function openTaskCreator() {
 			TaskCreator.open({
-				columns: $scope.columns
+				board: $scope.board,
+				columns: $scope.columns,
+				labels: labels
 			}).then(function (createdTask) {
 				toaster.pop('success', 'Task created');
 				reloadColumn(createdTask.columnId);
@@ -75,7 +77,9 @@
 		function openTaskDetails(task) {
 			TaskDetails.open({
 				task: task,
-				columns: $scope.columns
+				board: $scope.board,
+				columns: $scope.columns,
+				labels: labels
 			}).then(function () {
 				toaster.pop('success', 'Task saved');
 				reloadColumn(task.columnId);

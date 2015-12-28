@@ -7,29 +7,68 @@
 
 	TaskDetailsController.$inject = [
 		'$scope',
+		'$q',
 		'$uibModalInstance',
+		'board',
 		'columns',
+		'labels',
 		'Task',
 		'task',
 		'toaster'];
 
-	function TaskDetailsController($scope, $uibModalInstance, columns, Task, task, toaster) {
+	function TaskDetailsController($scope, $q, $uibModalInstance, board, columns, labels, Task, task, toaster) {
 		$scope.task = angular.copy(task);
+		$scope.board = board;
 		$scope.columns = columns;
+		$scope.labels = labels;
 		$scope.save = save;
 
 
+		function handleError() {
+			toaster.pop('error', 'Some error occurred');
+		}
+
 		function save() {
-			Task.update({
-				id: $scope.task.id,
-				title: $scope.task.title,
-				description: $scope.task.description
-			}).$promise
+			updateTask()
+				.then(setLabel, handleError)
+				.then(assignUser, handleError)
 				.then(function () {
 					$uibModalInstance.close();
-				}, function () {
-					toaster.pop('error', 'Some error occurred');
-				});
+				}, handleError);
+		}
+
+		function updateTask() {
+			if ($scope.task.title !== task.title || $scope.task.description !== task.description) {
+				return Task.update({
+					id: $scope.task.id,
+					title: $scope.task.title,
+					description: $scope.task.description
+				}).$promise;
+			} else {
+				return $q.when(true);
+			}
+		}
+
+		function setLabel() {
+			if ($scope.task.labelId !== task.labelId) {
+				return Task.setLabel({
+					taskId: $scope.task.id,
+					labelId: $scope.task.labelId
+				}).$promise;
+			} else {
+				return $q.when(true);
+			}
+		}
+
+		function assignUser() {
+			if ($scope.task.assigneeId !== task.assigneeId) {
+				return Task.assignUser({
+					taskId: $scope.task.id,
+					assigneeId: $scope.task.assigneeId
+				}).$promise;
+			} else {
+				return $q.when(true);
+			}
 		}
 	}
 })();
