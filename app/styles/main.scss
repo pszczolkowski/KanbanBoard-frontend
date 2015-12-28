@@ -10,6 +10,31 @@ $fa-font-path: "../bower_components/components-font-awesome/fonts" !default;
 @import "login/login";
 @import "modal/modal";
 
+html,
+body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+}
+
+.navbar-fixed {
+	flex-shrink: 0;
+}
+
+#main-body {
+	flex-grow: 1;
+
+	div[ui-view],
+	ui-view {
+		height: 100%;
+	}
+}
+
 .btn-block {
 	display: block;
 	width: 100%;
