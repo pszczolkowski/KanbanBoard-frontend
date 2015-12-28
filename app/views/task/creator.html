@@ -48,14 +48,23 @@
 		</div>
 
 		<div class="row row-compact">
-			<div class="col s12" input-field>
+			<div class="col s6" input-field>
 				<select id="task-creator-select-column"
 						ng-model="task.columnId"
 						ng-options="column.id as column.name for column in columns"
 						material-select>
-					<option value="column.id">{{column.name}}</option>
 				</select>
 				<label for="task-creator-select-column">Column</label>
+			</div>
+
+			<div class="col s6" input-field>
+				<select id="task-creator-select-label"
+						ng-model="task.labelId"
+						ng-options="label.id as label.name for label in labels"
+						material-select>
+					<option value="">None</option>
+				</select>
+				<label for="task-creator-select-label">Label</label>
 			</div>
 		</div>
 

@@ -21,6 +21,9 @@
 				resolve: {
 					columns: function () {
 						return params.columns;
+					},
+					labels: function () {
+						return params.labels;
 					}
 				}
 			}).result;

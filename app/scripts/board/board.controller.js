@@ -39,7 +39,8 @@
 
 		function openTaskCreator() {
 			TaskCreator.open({
-				columns: $scope.columns
+				columns: $scope.columns,
+				labels: labels
 			}).then(function (createdTask) {
 				toaster.pop('success', 'Task created');
 				reloadColumn(createdTask.columnId);
