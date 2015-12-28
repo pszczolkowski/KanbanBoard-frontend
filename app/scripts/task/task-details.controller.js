@@ -14,13 +14,16 @@
 		'labels',
 		'Task',
 		'task',
+		'taskPriority',
 		'toaster'];
 
-	function TaskDetailsController($scope, $q, $uibModalInstance, board, columns, labels, Task, task, toaster) {
+	function TaskDetailsController($scope, $q, $uibModalInstance, board, columns, labels, Task, task, taskPriority,
+								   toaster) {
 		$scope.task = angular.copy(task);
 		$scope.board = board;
 		$scope.columns = columns;
 		$scope.labels = labels;
+		$scope.taskPriorities = taskPriority;
 		$scope.save = save;
 
 
@@ -38,11 +41,14 @@
 		}
 
 		function updateTask() {
-			if ($scope.task.title !== task.title || $scope.task.description !== task.description) {
+			if ($scope.task.title !== task.title ||
+				$scope.task.description !== task.description ||
+				$scope.task.priority !== task.priority) {
 				return Task.update({
 					id: $scope.task.id,
 					title: $scope.task.title,
-					description: $scope.task.description
+					description: $scope.task.description,
+					priority: $scope.task.priority
 				}).$promise;
 			} else {
 				return $q.when(true);
