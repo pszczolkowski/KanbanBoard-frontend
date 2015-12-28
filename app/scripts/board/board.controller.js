@@ -76,7 +76,8 @@
 		function openTaskDetails(task) {
 			TaskDetails.open({
 				task: task,
-				columns: $scope.columns
+				columns: $scope.columns,
+				labels: labels
 			}).then(function () {
 				toaster.pop('success', 'Task saved');
 				reloadColumn(task.columnId);

@@ -16,6 +16,10 @@
 			move: {
 				url: config.apiUrl + '/task/move',
 				method: 'POST'
+			},
+			setLabel: {
+				url: config.apiUrl + '/task/label',
+				method: 'POST'
 			}
 		});
 	}
