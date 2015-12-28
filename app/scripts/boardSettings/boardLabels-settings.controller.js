@@ -16,6 +16,7 @@
 	function BoardLabelsSettingsController($scope, board, Label, LabelCreator, labels, toaster) {
 		$scope.labels = labels;
 		$scope.openLabelCreator = openLabelCreator;
+		$scope.deleteLabel = deleteLabel;
 
 
 		function openLabelCreator() {
@@ -33,6 +34,15 @@
 			}).$promise.then(function (labels) {
 					$scope.labels = labels;
 				});
+		}
+
+		function deleteLabel(label) {
+			label.$delete().then(function () {
+				toaster.pop('success', 'Label has been deleted');
+				reloadLabels()
+			}, function () {
+				toaster.pop('error', 'Some error occurred');
+			});
 		}
 	}
 })();

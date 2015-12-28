@@ -8,6 +8,8 @@
 	Label.$inject = ['$resource', 'config'];
 
 	function Label($resource, config) {
-		return $resource(config.apiUrl + '/label/:labelId');
+		return $resource(config.apiUrl + '/label/:labelId', {
+			labelId: '@id'
+		});
 	}
 })();
