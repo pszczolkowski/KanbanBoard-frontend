@@ -11,6 +11,7 @@
 			'ngCookies',
 			'ngResource',
 			'toaster',
+			'truncate',
 			'ui.materialize',
 			'ui.router',
 			'xeditable'
