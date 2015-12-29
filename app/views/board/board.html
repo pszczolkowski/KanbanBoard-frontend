@@ -42,7 +42,7 @@
 								#{{::task.idOnBoard}}
 							</header>
 							<section>
-								{{::task.title}}
+								{{::task.title | characters:70}}
 								<div class="right-align">
 									<i class="fa fa-user"
 									   data-tooltip="Assigned to {{::members[task.assigneeId].username}}"
