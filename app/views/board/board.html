@@ -40,6 +40,9 @@
 							<header style="background-color: {{labels[task.labelId].color}}"></header>
 							<section>
 								{{task.title}}
+								<span class="right" ng-class="{'green-text': task.priority === 'LOW', 'orange-text': task.priority === 'MEDIUM', 'red-text': task.priority === 'HIGH'}">
+									<i class="fa fa-exclamation-triangle"></i>
+								</span>
 							</section>
 						</div>
 					</div>

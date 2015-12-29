@@ -69,7 +69,7 @@
 		</div>
 
 		<div class="row row-compact">
-			<div class="col s12" input-field>
+			<div class="col s6" input-field>
 				<select id="task-creator-select-assignee"
 						ng-model="task.assigneeId"
 						ng-options="member.userId as member.username for member in board.members"
@@ -77,6 +77,15 @@
 					<option value="">None</option>
 				</select>
 				<label for="task-creator-select-assignee">Assignee</label>
+			</div>
+
+			<div class="col s6" input-field>
+				<select id="task-creator-select-priority"
+						ng-model="task.priority"
+						ng-options="priority.value as priority.name for priority in taskPriorities"
+						material-select>
+				</select>
+				<label for="task-creator-select-priority">Priority</label>
 			</div>
 		</div>
 
