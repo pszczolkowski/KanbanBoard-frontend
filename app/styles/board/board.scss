@@ -50,6 +50,15 @@
 	section {
 		padding: 5px;
 	}
+
+	footer {
+		padding: 0 5px;
+
+		.fa {
+			text-align: center;
+			width: 14px;
+		}
+	}
 }
 
 .as-sortable-dragging > div {

@@ -7,6 +7,7 @@
 
 	BoardController.$inject = [
 		'$scope',
+		'$confirm',
 		'board',
 		'Column',
 		'columns',
@@ -16,7 +17,7 @@
 		'TaskDetails',
 		'toaster'];
 
-	function BoardController($scope, board, Column, columns, labels, Task, TaskCreator, TaskDetails, toaster) {
+	function BoardController($scope, $confirm, board, Column, columns, labels, Task, TaskCreator, TaskDetails, toaster) {
 		$scope.board = board;
 		$scope.columns = columns;
 		$scope.labels = prepareLabelsFrom(labels);
@@ -27,6 +28,7 @@
 		};
 		$scope.openTaskCreator = openTaskCreator;
 		$scope.openTaskDetails = openTaskDetails;
+		$scope.deleteTask = deleteTask;
 
 
 		function prepareLabelsFrom(labels) {
@@ -94,6 +96,18 @@
 				toaster.pop('success', 'Task saved');
 				reloadColumn(task.columnId);
 			});
+		}
+
+		function deleteTask(task) {
+			$confirm('Are you sure you want to delete this task?')
+				.then(function () {
+					Task.delete({taskId: task.id}).$promise.then(function () {
+						toaster.pop('success', 'Task deleted');
+						reloadColumn(task.columnId);
+					}, function() {
+						toaster.pop('error', 'Some error occurred');
+					});
+				});
 		}
 	}
 })();

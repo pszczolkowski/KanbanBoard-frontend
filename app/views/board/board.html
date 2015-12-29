@@ -43,31 +43,52 @@
 							</header>
 							<section>
 								{{::task.title | characters:70}}
-								<div class="right-align">
-									<i class="fa fa-user"
-									   data-tooltip="Assigned to {{::members[task.assigneeId].username}}"
-									   ng-if="::task.assigneeId"
-									   tooltipped></i>
-									<i class="fa fa-align-left grey-text text-lighten-1"
-									   data-tooltip="Task has a description"
-									   ng-if="::task.description"
-									   tooltipped></i>
-									<span ng-switch="::task.priority">
-										<i ng-switch-when="LOW"
-										   class="fa fa-circle green-text"
-										   data-tooltip="Low priority"
-										   tooltipped></i>
-										<i ng-switch-when="MEDIUM"
-										   class="fa fa-exclamation orange-text"
-										   data-tooltip="Medium priority"
-										   tooltipped></i>
-										<i ng-switch-when="HIGH"
-										   class="fa fa-exclamation-triangle red-text"
-										   data-tooltip="High priority"
-										   tooltipped></i>
-									</span>
-								</div>
 							</section>
+							<footer>
+								<span ng-switch="::task.priority">
+									<i ng-switch-when="LOW"
+									   class="fa fa-circle green-text"
+									   data-tooltip="Low priority"
+									   tooltipped></i>
+									<i ng-switch-when="MEDIUM"
+									   class="fa fa-exclamation orange-text"
+									   data-tooltip="Medium priority"
+									   tooltipped></i>
+									<i ng-switch-when="HIGH"
+									   class="fa fa-exclamation-triangle red-text"
+									   data-tooltip="High priority"
+									   tooltipped></i>
+								</span>
+								<i class="fa fa-user"
+								   data-tooltip="Assigned to {{::members[task.assigneeId].username}}"
+								   ng-if="::task.assigneeId"
+								   tooltipped></i>
+								<i class="fa fa-align-left grey-text text-lighten-1"
+								   data-tooltip="Task has a description"
+								   ng-if="::task.description"
+								   tooltipped></i>
+
+								<span class="right">
+									<a href=""
+									   data-activates='board-task-options-{{::task.id}}'
+									   data-alignment="right"
+									   data-constrainwidth="false"
+									   ng-click="$event.stopPropagation()"
+									   dropdown>
+										<i class="fa fa-ellipsis-v grey-text clickable"
+										   data-tooltip="Options"
+										   tooltipped></i>
+									</a>
+
+									<ul id='board-task-options-{{::task.id}}' class='dropdown-content'>
+										<li>
+											<a href="" ng-click="deleteTask(task); $event.stopPropagation()">
+												delete
+											</a>
+										</li>
+									</ul>
+								</span>
+							</footer>
 						</div>
 					</div>
 				</td>
