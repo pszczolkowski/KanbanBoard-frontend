@@ -20,6 +20,7 @@
 		$scope.board = board;
 		$scope.columns = columns;
 		$scope.labels = prepareLabelsFrom(labels);
+		$scope.members = prepareMembersFrom(board);
 		$scope.dragListeners = {
 			itemMoved: onTaskMove,
 			orderChanged: onTaskMove
@@ -32,6 +33,15 @@
 			var result = [];
 			for (var i = 0; i < labels.length; i++) {
 				result[labels[i].id] = labels[i];
+			}
+
+			return result;
+		}
+
+		function prepareMembersFrom(board) {
+			var result = [];
+			for (var i = 0; i < board.members.length; i++) {
+				result[board.members[i].userId] = board.members[i];
 			}
 
 			return result;

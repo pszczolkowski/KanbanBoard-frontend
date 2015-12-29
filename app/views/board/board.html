@@ -34,16 +34,39 @@
 					as-sortable="dragListeners"
 					ng-model="column.tasks">
 					<div class="task"
-						 ng-repeat="task in column.tasks track by task.id"
+						 ng-repeat="task in column.tasks"
 						 ng-click="openTaskDetails(task)"
 						 as-sortable-item>
 						<div as-sortable-item-handle>
-							<header style="background-color: {{labels[task.labelId].color}}"></header>
+							<header board-label="{{::labels[task.labelId].color}}">
+								#{{::task.idOnBoard}}
+							</header>
 							<section>
-								{{task.title}}
-								<span class="right" ng-class="{'green-text': task.priority === 'LOW', 'orange-text': task.priority === 'MEDIUM', 'red-text': task.priority === 'HIGH'}">
-									<i class="fa fa-exclamation-triangle"></i>
-								</span>
+								{{::task.title}}
+								<div class="right-align">
+									<i class="fa fa-user"
+									   data-tooltip="Assigned to {{::members[task.assigneeId].username}}"
+									   ng-if="::task.assigneeId"
+									   tooltipped></i>
+									<i class="fa fa-align-left grey-text text-lighten-1"
+									   data-tooltip="Task has a description"
+									   ng-if="::task.description"
+									   tooltipped></i>
+									<span ng-switch="::task.priority">
+										<i ng-switch-when="LOW"
+										   class="fa fa-circle green-text"
+										   data-tooltip="Low priority"
+										   tooltipped></i>
+										<i ng-switch-when="MEDIUM"
+										   class="fa fa-exclamation orange-text"
+										   data-tooltip="Medium priority"
+										   tooltipped></i>
+										<i ng-switch-when="HIGH"
+										   class="fa fa-exclamation-triangle red-text"
+										   data-tooltip="High priority"
+										   tooltipped></i>
+									</span>
+								</div>
 							</section>
 						</div>
 					</div>
