@@ -6,7 +6,7 @@
 				New task
 			</button>
 			<a class="btn" ui-sref="boardSettings({boardId: board.id})"
-				ng-if="isLoggedUserBoardAdmin">
+				ng-if="board.isLoggedUserBoardAdmin">
 				<i class="fa fa-cog"></i>
 				Settings
 			</a>

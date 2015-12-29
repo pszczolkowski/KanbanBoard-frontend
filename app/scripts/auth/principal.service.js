@@ -22,6 +22,9 @@
 					_identity = identity;
 					_authenticated = identity !== null;
 				},
+				getIdentity: function() {
+					return _identity || this.identity();
+				},
 				identity: function (force) {
 					var deferred = $q.defer();
 

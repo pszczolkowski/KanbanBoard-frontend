@@ -8,6 +8,7 @@
 	BoardSettingsController.$inject = [
 		'$scope',
 		'$alert',
+		'$state',
 		'board',
 		'Column',
 		'ColumnCreator',
@@ -15,7 +16,7 @@
 		'columns',
 		'toaster'];
 
-	function BoardSettingsController($scope, $alert, board, Column, ColumnCreator, ColumnDeleteModal, columns, toaster) {
+	function BoardSettingsController($scope, $alert, $state, board, Column, ColumnCreator, ColumnDeleteModal, columns, toaster) {
 		$scope.columns = columns;
 		$scope.expandedColumn = {
 			index: null
@@ -26,6 +27,10 @@
 		$scope.openColumnCreator = openColumnCreator;
 		$scope.deleteColumn = deleteColumn;
 		$scope.setWip = setWip;
+
+		if (!board.isLoggedUserBoardAdmin) {
+			$state.go('error-403', {}, {location: 'replace'});
+		}
 
 
 		function handleError() {
