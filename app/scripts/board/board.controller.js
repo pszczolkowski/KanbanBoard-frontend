@@ -10,13 +10,14 @@
 		'board',
 		'Column',
 		'columns',
+		'identity',
 		'labels',
 		'Task',
 		'TaskCreator',
 		'TaskDetails',
 		'toaster'];
 
-	function BoardController($scope, board, Column, columns, labels, Task, TaskCreator, TaskDetails, toaster) {
+	function BoardController($scope, board, Column, columns, identity, labels, Task, TaskCreator, TaskDetails, toaster) {
 		$scope.board = board;
 		$scope.columns = columns;
 		$scope.labels = prepareLabelsFrom(labels);
@@ -24,6 +25,7 @@
 			itemMoved: onTaskMove,
 			orderChanged: onTaskMove
 		};
+		$scope.isLoggedUserBoardAdmin = checkIfLoggedUserIsBoardAdmin();
 		$scope.openTaskCreator = openTaskCreator;
 		$scope.openTaskDetails = openTaskDetails;
 
@@ -84,6 +86,16 @@
 				toaster.pop('success', 'Task saved');
 				reloadColumn(task.columnId);
 			});
+		}
+
+		function checkIfLoggedUserIsBoardAdmin() {
+			for (var i = 0; i < $scope.board.members.length; i++) {
+				if ($scope.board.members[i].userId === identity.id && $scope.board.members[i].permissions === 'ADMIN') {
+					return true;
+				}
+			}
+
+			return false;
 		}
 	}
 })();
