@@ -12,13 +12,13 @@
 				</div>
 				<div class="collapsible-body column-options">
 					<ul class="collection">
-						<li class="collection-item grey lighten-5">
+						<li class="collection-item grey lighten-5" ng-if="::!$first">
 							<a href="" ng-click="moveColumnUp($index)">
 								<i class="fa fa-arrow-up fa-lg action-icon"></i>
 								move up
 							</a>
 						</li>
-						<li class="collection-item grey lighten-5">
+						<li class="collection-item grey lighten-5" ng-if="::!$last">
 							<a href="" ng-click="moveColumnDown($index)">
 								<i class="fa fa-arrow-down fa-lg action-icon"></i>
 								move down
