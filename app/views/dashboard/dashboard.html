@@ -1,7 +1,33 @@
-<a ui-sref="board({boardId: board.id})" ng-repeat="board in boards">
-	{{board.name}}
-</a>
+<div class="row">
+	<div class="col s12 m10 push-m1 l6 push-l3">
+		<h4>Your boards</h4>
+	</div>
+</div>
 
-<button ng-click="openBoardCreator()">
-	add board
+<div class="row">
+	<div class="col s12 m10 push-m1 l6 push-l3">
+		<ul class="collection">
+			<li class="collection-item with-icon clickable"
+				ng-repeat="board in boards"
+				ng-click="openBoard(board)">
+				<div class="collection-item-icon grey lighten-4">
+					<i class="material-icons blue-text">web</i>
+				</div>
+
+				<strong>
+					{{board.name}}
+				</strong>
+			</li>
+		</ul>
+
+		<div class="card-panel blue lighten-2 white-text center" ng-show="boards.length === 0">
+			You have no boards
+		</div>
+	</div>
+</div>
+
+<button class="btn-floating btn-large waves-effect waves-light green btn-main"
+		ng-click="openBoardCreator()"
+		title="create new board">
+	<i class="material-icons">add</i>
 </button>

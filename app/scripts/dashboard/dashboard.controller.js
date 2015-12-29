@@ -7,14 +7,16 @@
 
 	DashboardController.$inject = [
 		'$scope',
+		'$state',
 		'Board',
 		'BoardCreator',
 		'boards',
 		'toaster'];
 
-	function DashboardController($scope, Board, BoardCreator, boards, toaster) {
+	function DashboardController($scope, $state, Board, BoardCreator, boards, toaster) {
 		$scope.boards = boards;
 		$scope.openBoardCreator = openBoardCreator;
+		$scope.openBoard = openBoard;
 
 
 		function openBoardCreator() {
@@ -30,6 +32,10 @@
 			Board.query().$promise.then(function (boards) {
 				$scope.boards = boards;
 			});
+		}
+
+		function openBoard(board) {
+			$state.go('board', {boardId: board.id});
 		}
 	}
 })();
