@@ -25,6 +25,9 @@ body {
 .navbar-fixed {
 	flex-shrink: 0;
 }
+#navbar {
+	margin-bottom: 10px;
+}
 
 #main-body {
 	flex-grow: 1;
@@ -92,6 +95,12 @@ ul.collection.optionsable {
 	margin-right: 10px;
 }
 
+
+$loading-bar-color: color("red", "base");
+#loading-bar .bar {
+	background: $loading-bar-color !important;
+}
+
 // fix for Angular Toaster due to conflicts with Materialize
 #toast-container {
 	bottom: 12px;
@@ -104,18 +113,7 @@ ul.collection.optionsable {
 	display: block;
 }
 
-#navbar {
-	margin-bottom: 10px;
-}
-
-$loading-bar-color: color("red", "base");
-
-#loading-bar .bar {
-	background: $loading-bar-color;
-}
-
 // Angular x-editable
-
 .editable-buttons .btn-flat {
 	height: 3rem;
 	padding-left: 1rem;
