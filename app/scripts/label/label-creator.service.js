@@ -21,6 +21,9 @@
 				resolve: {
 					board: function () {
 						return params.board;
+					},
+					labels: function () {
+						return params.labels;
 					}
 				}
 			}).result;

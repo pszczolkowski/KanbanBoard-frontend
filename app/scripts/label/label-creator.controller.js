@@ -10,18 +10,34 @@
 		'$uibModalInstance',
 		'board',
 		'Label',
+		'labelColors',
+		'labels',
 		'toaster'];
 
-	function LabelCreatorController($scope, $uibModalInstance, board, Label, toaster) {
+	function LabelCreatorController($scope, $uibModalInstance, board, Label, labelColors, labels, toaster) {
+		$scope.colors = getColorsThatAreNotUsed();
 		$scope.label = {
 			name: '',
-			color: '#000000'
+			color: $scope.colors[0]
 		};
 		$scope.errors = {
 			duplicatedName: false
 		};
 		$scope.add = add;
 
+
+		function getColorsThatAreNotUsed() {
+			var resultColors = angular.copy(labelColors);
+
+			for (var i = 0; i < labels.length; i++) {
+				var index = resultColors.indexOf(labels[i].color);
+				if (index > -1) {
+					resultColors.splice(index, 1);
+				}
+			}
+
+			return resultColors;
+		}
 
 		function add() {
 			var label = new Label();

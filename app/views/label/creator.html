@@ -30,19 +30,16 @@
 		</div>
 
 		<div class="row row-compact">
-			<div class="col s12" input-field>
-				<input type="text"
-					   id="label-creator-input-label-color"
-					   name="color"
-					   ng-model="label.color"
-					   ng-pattern="'#[a-fA-F0-9]{6}'"
-					   required />
-				<label for="label-creator-input-label-color">Color</label>
+			<div class="col s12">
+				Color:
+				<!--<button type="button" board-label="{{label.color}}" class="btn btn-floating" ng-if="label.color" ng-click="label.color = null">-->
+					<!--<i class="fa fa-pencil"></i>-->
+				<!--</button>-->
 
-				<div class="error-message">
-					<p ng-show="newLabelForm.color.$dirty && newLabelForm.color.$error.pattern">
-						Invalid format
-					</p>
+				<div>
+					<button type="button" class="btn btn-floating label-sample" ng-repeat="color in colors" board-label="{{color}}" ng-click="label.color = color">
+						<span class="fa fa-lg fa-check" ng-show="label.color === color"></span>
+					</button>
 				</div>
 			</div>
 		</div>

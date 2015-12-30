@@ -21,7 +21,8 @@
 
 		function openLabelCreator() {
 			LabelCreator.open({
-				board: board
+				board: board,
+				labels: $scope.labels
 			}).then(function () {
 				toaster.pop('success', 'Label has been created');
 				reloadLabels();
