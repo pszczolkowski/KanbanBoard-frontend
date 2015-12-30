@@ -81,6 +81,16 @@
 									</a>
 
 									<ul id='board-task-options-{{::task.id}}' class='dropdown-content'>
+										<li ng-if="::columns[0].id !== task.columnId">
+											<a href="" ng-click="moveTaskLeft(task); $event.stopPropagation()">
+												move left
+											</a>
+										</li>
+										<li ng-if="::columns[columns.length - 1].id !== task.columnId">
+											<a href="" ng-click="moveTaskRight(task); $event.stopPropagation()">
+												move right
+											</a>
+										</li>
 										<li>
 											<a href="" ng-click="deleteTask(task); $event.stopPropagation()">
 												delete

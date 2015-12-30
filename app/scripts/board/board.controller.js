@@ -29,6 +29,8 @@
 		$scope.openTaskCreator = openTaskCreator;
 		$scope.openTaskDetails = openTaskDetails;
 		$scope.deleteTask = deleteTask;
+		$scope.moveTaskLeft = moveTaskLeft;
+		$scope.moveTaskRight = moveTaskRight;
 
 
 		function prepareLabelsFrom(labels) {
@@ -107,6 +109,44 @@
 					}, function() {
 						toaster.pop('error', 'Some error occurred');
 					});
+				});
+		}
+
+		function moveTaskLeft(task) {
+			var columnToMove = null;
+
+			for (var i = 0; i < $scope.columns.length; i++) {
+				if ($scope.columns[i].id === task.columnId) {
+					columnToMove = $scope.columns[i - 1];
+				}
+			}
+
+			Task.move({
+				taskId: task.id,
+				columnId: columnToMove.id,
+				position: columnToMove.tasks.length
+			}).$promise.finally(function () {
+					reloadColumn(task.columnId);
+					reloadColumn(columnToMove.id);
+				});
+		}
+
+		function moveTaskRight(task) {
+			var columnToMove = null;
+
+			for (var i = 0; i < $scope.columns.length; i++) {
+				if ($scope.columns[i].id === task.columnId) {
+					columnToMove = $scope.columns[i + 1];
+				}
+			}
+
+			Task.move({
+				taskId: task.id,
+				columnId: columnToMove.id,
+				position: columnToMove.tasks.length
+			}).$promise.finally(function () {
+					reloadColumn(task.columnId);
+					reloadColumn(columnToMove.id);
 				});
 		}
 	}
