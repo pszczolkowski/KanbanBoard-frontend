@@ -5,9 +5,9 @@
 		.module('kanbanBoardApp')
 		.factory('Board', Board);
 
-	Board.$inject = ['$resource', 'config', 'Principal'];
+	Board.$inject = ['$resource', 'config', 'LoggedUser'];
 
-	function Board($resource, config, Principal) {
+	function Board($resource, config, LoggedUser) {
 		return $resource(config.apiUrl + '/board/:boardId', {}, {
 			get: {
 				transformResponse: transformBoard
@@ -35,10 +35,8 @@
 		}
 
 		function checkIfLoggedUserIsBoardAdmin(board) {
-			var identity = Principal.getIdentity();
-
 			for (var i = 0; i < board.members.length; i++) {
-				if (board.members[i].userId === identity.id && board.members[i].permissions === 'ADMIN') {
+				if (board.members[i].userId === LoggedUser.id && board.members[i].permissions === 'ADMIN') {
 					return true;
 				}
 			}

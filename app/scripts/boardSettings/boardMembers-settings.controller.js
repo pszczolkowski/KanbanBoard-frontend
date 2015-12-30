@@ -9,13 +9,13 @@
 		'$scope',
 		'Board',
 		'board',
-		'identity',
+		'LoggedUser',
 		'toaster',
 		'UserInvitingModal'];
 
-	function BoardMembersSettingsController($scope, Board, board, identity, toaster, UserInvitingModal) {
+	function BoardMembersSettingsController($scope, Board, board, LoggedUser, toaster, UserInvitingModal) {
 		$scope.board = board;
-		$scope.identity = identity;
+		$scope.identity = LoggedUser;
 		$scope.openUserInvitingModal = openUserInvitingModal;
 		$scope.removeMember = removeMember;
 		$scope.revokeAdministratorRole = revokeAdministratorRole;

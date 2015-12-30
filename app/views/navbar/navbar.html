@@ -9,7 +9,7 @@
 
 		<div ncy-breadcrumb />
 
-		<ul class="right" ng-if="!identity">
+		<ul class="right" ng-if="!identity.username">
 			<li ng-show="state.current.name === 'login'">
 				<a ui-sref="register">
 					<span class="fa fa-user-plus"></span>
@@ -24,7 +24,7 @@
 			</li>
 		</ul>
 
-		<ul class="right" ng-show="identity">
+		<ul class="right" ng-show="identity.username">
 			<li>
 				<a href="" class="dropdown-button" data-activates="userDropdown" dropdown data-beloworigin="true" data-constrainwidth="false">
 					{{identity.username}}

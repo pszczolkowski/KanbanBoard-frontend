@@ -30,8 +30,8 @@
 			responseError: function (response) {
 				if (tokenHasExpired(response)) {
 					localStorageService.remove('token');
-					var Principal = $injector.get('Principal');
-					if (Principal.isAuthenticated()) {
+					var LoggedUser = $injector.get('LoggedUser');
+					if (LoggedUser.isAuthenticated()) {
 						var Auth = $injector.get('Auth');
 						Auth.authorize(true);
 					}

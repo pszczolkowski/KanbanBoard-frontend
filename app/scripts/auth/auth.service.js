@@ -5,9 +5,9 @@
 		.module('kanbanBoardApp')
 		.factory('Auth', Auth);
 
-	Auth.$inject = ['$rootScope', '$q', '$state', 'AuthServerProvider', 'Principal', 'Account'];
+	Auth.$inject = ['$rootScope', '$q', '$state', 'AuthServerProvider', 'Account', 'LoggedUser'];
 
-	function Auth($rootScope, $q, $state, AuthServerProvider, Principal, Account, Activate) {
+	function Auth($rootScope, $q, $state, AuthServerProvider, Account, LoggedUser) {
 		return {
 			login: login,
 			logout: logout,
@@ -17,39 +17,28 @@
 		};
 
 
-		function login(credentials, callback) {
-			callback = callback || angular.noop;
-			var deferred = $q.defer();
+		function login(credentials) {
+			var promise = AuthServerProvider.login(credentials);
+			promise.then(function (data) {
+					LoggedUser.$reload();
+				}, logout);
 
-			AuthServerProvider.login(credentials).then(function (data) {
-				// retrieve the logged account information
-				Principal.identity(true).then(function(identity) {
-					$rootScope.$broadcast('loginSuccess', identity);
-					deferred.resolve(data);
-				});
-				return callback();
-			}).catch(function (err) {
-				this.logout();
-				deferred.reject(err);
-				return callback(err);
-			}.bind(this));
-
-			return deferred.promise;
+			return promise;
 		}
 
 		function logout() {
 			AuthServerProvider.logout();
-			Principal.authenticate(null);
+			LoggedUser.logout();
 			// Reset state memory
 			$rootScope.previousStateName = undefined;
 			$rootScope.previousStateNameParams = undefined;
 		}
 
 		function authorize(force) {
-			var promise = Principal.identity(force);
+			var promise = LoggedUser.$promise;
 
 			promise.then(function() {
-				var isAuthenticated = Principal.isAuthenticated();
+				var isAuthenticated = LoggedUser.isAuthenticated();
 
 				if ($rootScope.toState.name === 'login' || $rootScope.toState.name === 'register') {
 					if (isAuthenticated) {

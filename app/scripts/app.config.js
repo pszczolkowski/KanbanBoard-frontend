@@ -15,21 +15,18 @@
 		.config(externalModules);
 
 
-	authenticationConfig.$inject = ['$rootScope', '$state', 'Principal', 'Auth'];
+	authenticationConfig.$inject = ['$rootScope', '$state', 'Auth'];
 	xeditableConfig.$inject = ['editableOptions', 'editableThemes'];
 	routing.$inject = ['$urlRouterProvider', '$stateProvider', '$breadcrumbProvider'];
 	interceptors.$inject = ['$httpProvider'];
 	externalModules.$inject = ['cfpLoadingBarProvider'];
 
-	function authenticationConfig($rootScope, $state, Principal, Auth) {
+	function authenticationConfig($rootScope, $state, Auth) {
 		$rootScope.$on('$stateChangeStart', function (event, toState, toStateParams) {
 			$rootScope.toState = toState;
 			$rootScope.toStateParams = toStateParams;
 
-			if (Principal.isIdentityResolved()) {
-				Auth.authorize();
-			}
-
+			Auth.authorize();
 		});
 
 		$rootScope.back = function() {
