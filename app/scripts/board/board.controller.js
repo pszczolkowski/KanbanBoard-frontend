@@ -15,13 +15,17 @@
 		'Task',
 		'TaskCreator',
 		'TaskDetails',
+		'taskPriority',
 		'toaster'];
 
-	function BoardController($scope, $confirm, board, Column, columns, labels, Task, TaskCreator, TaskDetails, toaster) {
+	function BoardController($scope, $confirm, board, Column, columns, labels, Task, TaskCreator, TaskDetails,
+							 taskPriority, toaster) {
 		$scope.board = board;
 		$scope.columns = columns;
 		$scope.labels = prepareLabelsFrom(labels);
 		$scope.members = prepareMembersFrom(board);
+		$scope.taskPriorities = taskPriority;
+		$scope.filters = {};
 		$scope.dragListeners = {
 			itemMoved: onTaskMove,
 			orderChanged: onTaskMove
@@ -31,6 +35,7 @@
 		$scope.deleteTask = deleteTask;
 		$scope.moveTaskLeft = moveTaskLeft;
 		$scope.moveTaskRight = moveTaskRight;
+		$scope.clearAllFilters = clearAllFilters;
 
 
 		function prepareLabelsFrom(labels) {
@@ -148,6 +153,10 @@
 					reloadColumn(task.columnId);
 					reloadColumn(columnToMove.id);
 				});
+		}
+
+		function clearAllFilters() {
+			$scope.filters = {};
 		}
 	}
 })();

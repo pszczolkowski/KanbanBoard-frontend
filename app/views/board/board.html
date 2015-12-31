@@ -10,6 +10,9 @@
 				<i class="fa fa-cog"></i>
 				Settings
 			</a>
+			<a href="#" class="button-collapse" data-activates="board-filters-menu" data-sidenav="right" data-menuwidth="500" data-closeonclick="true">
+				Show side-nav
+			</a>
 		</div>
 	</div>
 
@@ -34,7 +37,7 @@
 					as-sortable="dragListeners"
 					ng-model="column.tasks">
 					<div class="task"
-						 ng-repeat="task in column.tasks"
+						 ng-repeat="task in column.tasks | taskFilter:filters"
 						 ng-click="openTaskDetails(task)"
 						 as-sortable-item>
 						<div as-sortable-item-handle>
@@ -108,3 +111,74 @@
 	</div>
 </div>
 
+<div id="board-filters-menu" class="side-nav">
+	<div class="row">
+		<div class="col s12">
+			<h4>Filters</h4>
+		</div>
+	</div>
+
+	<form>
+		<div class="row">
+			<div class="col s12 input-with-button" input-field>
+				<input type="text"
+					   id="board-filtersr-input-task-title"
+					   name="title"
+					   ng-model="filters.title"
+					   ng-model-options="{debounce: 250}"
+					   autofocus/>
+				<i class="fa fa-times input-button red-text text-lighten-3 clickable"
+				   ng-click="filters.title = null"
+				   ng-show="filters.title"></i>
+				<label for="board-filtersr-input-task-title">Title</label>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col s12" input-field>
+				<select id="board-filters-select-priority"
+						ng-model="filters.priority"
+						ng-options="priority.value as priority.name for priority in taskPriorities"
+						material-select>
+					<option value="">All</option>
+				</select>
+				<label for="board-filters-select-priority">Priority</label>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col s12" input-field>
+				<select id="board-filters-select-label"
+						ng-model="filters.labelId"
+						ng-options="label.id as label.name for (id, label) in labels"
+						material-select>
+					<option value="">All</option>
+				</select>
+				<label for="board-filters-select-label">Label</label>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col s12" input-field>
+				<select id="board-filters-select-assignee"
+						ng-model="filters.assigneeId"
+						ng-options="member.userId as member.username for member in board.members"
+						material-select>
+					<option value="">All</option>
+				</select>
+				<label for="board-filters-select-assignee">Assignee</label>
+			</div>
+		</div>
+	</form>
+
+	<div class="row">
+		<div class="col s12">
+			<a id="board-filters-button-hide" href="" class="btn-flat teal-text">
+				hide
+			</a>
+			<button id="board-filters-button-clear-all" class="btn-flat" ng-click="clearAllFilters()">
+				clear all
+			</button>
+		</div>
+	</div>
+</div>

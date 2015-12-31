@@ -116,6 +116,17 @@ ul.collection.optionsable {
 	margin-right: 10px;
 }
 
+.input-with-button {
+	position: relative;
+
+	.input-button {
+		font-size: 20px;
+		position: absolute;
+		right: 0;
+		top: 0.8rem;
+	}
+}
+
 
 $loading-bar-color: color("red", "base");
 #loading-bar .bar {
