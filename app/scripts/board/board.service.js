@@ -29,9 +29,15 @@
 
 		function transformBoard(data) {
 			var board = angular.fromJson(data);
-			board.isLoggedUserBoardAdmin = checkIfLoggedUserIsBoardAdmin(board);
+			determineLoggedUserRoleOn(board);
 
 			return board;
+		}
+
+		function determineLoggedUserRoleOn(board) {
+			LoggedUser.$promise.then(function () {
+				board.isLoggedUserBoardAdmin = checkIfLoggedUserIsBoardAdmin(board);
+			});
 		}
 
 		function checkIfLoggedUserIsBoardAdmin(board) {
