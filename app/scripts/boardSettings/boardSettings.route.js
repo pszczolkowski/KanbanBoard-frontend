@@ -32,9 +32,6 @@
 					templateUrl: 'views/boardSettings/labels.html'
 				}
 			},
-			ncyBreadcrumb: {
-				label: 'Settings',
-				parent: 'board'
 			},
 			resolve: {
 				board: resolveBoard,

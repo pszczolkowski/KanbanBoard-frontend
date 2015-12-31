@@ -15,8 +15,6 @@
 			url: '/',
 			templateUrl: 'views/dashboard/dashboard.html',
 			controller: 'DashboardController',
-			ncyBreadcrumb: {
-				skip: true
 			},
 			resolve: {
 				boards: resolveBoards

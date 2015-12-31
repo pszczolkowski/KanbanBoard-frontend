@@ -13,8 +13,6 @@
 			url: '/register',
 			templateUrl: 'views/register/register.html',
 			controller: 'RegisterController',
-			ncyBreadcrumb: {
-				hide: true
 			}
 		});
 	}

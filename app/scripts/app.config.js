@@ -17,7 +17,7 @@
 
 	authenticationConfig.$inject = ['$rootScope', '$state', 'Auth'];
 	xeditableConfig.$inject = ['editableOptions', 'editableThemes'];
-	routing.$inject = ['$urlRouterProvider', '$stateProvider', '$breadcrumbProvider'];
+	routing.$inject = ['$urlRouterProvider', '$stateProvider'];
 	interceptors.$inject = ['$httpProvider'];
 	externalModules.$inject = ['cfpLoadingBarProvider'];
 

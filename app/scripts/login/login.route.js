@@ -13,8 +13,6 @@
 			url: '/login',
 			templateUrl: 'views/login/login.html',
 			controller: 'LoginController',
-			ncyBreadcrumb: {
-				hide: true
 			}
 		});
 	}

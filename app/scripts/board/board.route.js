@@ -17,8 +17,6 @@
 			url: '/board/{boardId:int}',
 			templateUrl: 'views/board/board.html',
 			controller: 'BoardController',
-			ncyBreadcrumb: {
-				label: 'Board'
 			},
 			resolve: {
 				board: resolveBoard,
