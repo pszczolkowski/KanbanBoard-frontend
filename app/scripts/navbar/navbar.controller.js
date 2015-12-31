@@ -17,6 +17,11 @@
 		$scope.identity = LoggedUser;
 		$scope.logout = logout;
 
+		$scope.state = $state.current.navbar;
+		$scope.$on('$stateChangeSuccess', function () {
+			$scope.state = $state.current.navbar;
+		});
+
 		function logout() {
 			Auth.logout();
 

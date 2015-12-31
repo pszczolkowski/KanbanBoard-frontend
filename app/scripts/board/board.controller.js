@@ -5,6 +5,12 @@
 		.module('kanbanBoardApp')
 		.controller('BoardController', BoardController);
 
+	// it's move out of controller scope, so it can be shared among
+	// the same controllers in different views
+	var view = {
+		filters: false
+	};
+
 	BoardController.$inject = [
 		'$scope',
 		'$confirm',
@@ -31,9 +37,7 @@
 			itemMoved: onTaskMove,
 			orderChanged: onTaskMove
 		};
-		$scope.view = {
-			filters: false
-		};
+		$scope.view = view;
 		$scope.openTaskCreator = openTaskCreator;
 		$scope.openTaskDetails = openTaskDetails;
 		$scope.deleteTask = deleteTask;
@@ -41,6 +45,8 @@
 		$scope.moveTaskRight = moveTaskRight;
 		$scope.filter = filter;
 		$scope.clearAllFilters = clearAllFilters;
+		$scope.showFilters = showFilters;
+		$scope.hideFilters = hideFilters;
 
 		filter();
 
@@ -171,6 +177,15 @@
 		function clearAllFilters() {
 			$scope.filters = {};
 			filter();
+		}
+
+		function showFilters() {
+			$scope.view.filters = true;
+		}
+
+		function hideFilters() {
+			$scope.view.filters = false;
+			$scope.$apply();
 		}
 	}
 })();

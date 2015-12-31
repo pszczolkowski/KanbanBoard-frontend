@@ -15,6 +15,8 @@
 			url: '/',
 			templateUrl: 'views/dashboard/dashboard.html',
 			controller: 'DashboardController',
+			navbar: {
+				name: 'My boards'
 			},
 			resolve: {
 				boards: resolveBoards

@@ -47,7 +47,7 @@
 		editableThemes['default'].cancelTpl = '<button class="btn-flat" ng-click="$form.$cancel()"><i class="fa fa-times red-text text-lighten-2"></i></button>';
 	}
 
-	function routing($urlRouterProvider, $stateProvider, $breadcrumbProvider) {
+	function routing($urlRouterProvider, $stateProvider) {
 		$urlRouterProvider.otherwise('/');
 
 		$stateProvider.state('root', {
@@ -66,10 +66,6 @@
 					return Auth.authorize();
 				}]
 			}
-		});
-
-		$breadcrumbProvider.setOptions({
-			templateUrl: 'views/breadcrumb/breadcrumb.html'
 		});
 	}
 

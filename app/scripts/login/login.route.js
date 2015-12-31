@@ -11,8 +11,17 @@
 		$stateProvider.state('login', {
 			parent: 'root',
 			url: '/login',
-			templateUrl: 'views/login/login.html',
-			controller: 'LoginController',
+			views: {
+				'': {
+					templateUrl: 'views/login/login.html',
+					controller: 'LoginController',
+				},
+				'navbar-fragment@root': {
+					templateUrl: 'views/login/navbarFragment.html'
+				}
+			},
+			navbar: {
+				menu: false
 			}
 		});
 	}

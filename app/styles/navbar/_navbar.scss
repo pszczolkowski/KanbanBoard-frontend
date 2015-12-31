@@ -1,0 +1,27 @@
+.navbar-fixed {
+	flex-shrink: 0;
+}
+#navbar {
+	margin-bottom: 10px;
+}
+
+#menu-identity {
+	color: black;
+	overflow: hidden;
+
+	i.material-icons {
+		display: inline-block;
+		font-size: 5rem;
+	}
+}
+
+@media #{$small-and-down} {
+	nav i.fa {
+		height: 56px;
+		line-height: 56px;
+	}
+
+	nav i.left {
+		margin-right: 0;
+	}
+}
