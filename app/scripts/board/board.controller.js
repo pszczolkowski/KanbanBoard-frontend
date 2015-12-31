@@ -15,11 +15,12 @@
 		'Task',
 		'TaskCreator',
 		'TaskDetails',
+		'taskFilterFilter',
 		'taskPriority',
 		'toaster'];
 
 	function BoardController($scope, $confirm, board, Column, columns, labels, Task, TaskCreator, TaskDetails,
-							 taskPriority, toaster) {
+							 taskFilter, taskPriority, toaster) {
 		$scope.board = board;
 		$scope.columns = columns;
 		$scope.labels = prepareLabelsFrom(labels);
@@ -30,12 +31,18 @@
 			itemMoved: onTaskMove,
 			orderChanged: onTaskMove
 		};
+		$scope.view = {
+			filters: false
+		};
 		$scope.openTaskCreator = openTaskCreator;
 		$scope.openTaskDetails = openTaskDetails;
 		$scope.deleteTask = deleteTask;
 		$scope.moveTaskLeft = moveTaskLeft;
 		$scope.moveTaskRight = moveTaskRight;
+		$scope.filter = filter;
 		$scope.clearAllFilters = clearAllFilters;
+
+		filter();
 
 
 		function prepareLabelsFrom(labels) {
@@ -155,8 +162,15 @@
 				});
 		}
 
+		function filter() {
+			angular.forEach($scope.columns, function (column) {
+				column.filteredTasks = taskFilter(column.tasks, $scope.filters);
+			});
+		}
+
 		function clearAllFilters() {
 			$scope.filters = {};
+			filter();
 		}
 	}
 })();

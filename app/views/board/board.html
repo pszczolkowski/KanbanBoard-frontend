@@ -6,11 +6,11 @@
 				New task
 			</button>
 			<a class="btn" ui-sref="boardSettings({boardId: board.id})"
-				ng-if="board.isLoggedUserBoardAdmin">
+				ng-if="::board.isLoggedUserBoardAdmin">
 				<i class="fa fa-cog"></i>
 				Settings
 			</a>
-			<a href="#" class="button-collapse" data-activates="board-filters-menu" data-sidenav="right" data-menuwidth="500" data-closeonclick="true">
+			<a href="#" class="button-collapse" ng-click="view.filters = true"  data-activates="board-filters-menu" data-sidenav="right" data-menuwidth="400" data-closeonclick="true">
 				Show side-nav
 			</a>
 		</div>
@@ -21,7 +21,7 @@
 			<thead>
 			<tr>
 				<th ng-repeat="column in columns track by column.id">
-					{{column.name}}
+					{{::column.name}}
 					<small>
 						[{{column.tasks.length}}<!--
 					--><span ng-if="column.workInProgressLimit > 0">
@@ -37,7 +37,7 @@
 					as-sortable="dragListeners"
 					ng-model="column.tasks">
 					<div class="task"
-						 ng-repeat="task in column.tasks | taskFilter:filters"
+						 ng-repeat="task in column.filteredTasks"
 						 ng-click="openTaskDetails(task)"
 						 as-sortable-item>
 						<div as-sortable-item-handle>
@@ -112,33 +112,35 @@
 </div>
 
 <div id="board-filters-menu" class="side-nav">
-	<div class="row">
-		<div class="col s12">
-			<h4>Filters</h4>
-		</div>
-	</div>
-
-	<form>
+	<div ng-if="view.filters">
 		<div class="row">
-			<div class="col s12 input-with-button" input-field>
+			<div class="col s12">
+				<h4>Filters</h4>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col s12 input-field input-with-button">
 				<input type="text"
 					   id="board-filtersr-input-task-title"
 					   name="title"
+					   ng-change="filter()"
 					   ng-model="filters.title"
 					   ng-model-options="{debounce: 250}"
 					   autofocus/>
 				<i class="fa fa-times input-button red-text text-lighten-3 clickable"
-				   ng-click="filters.title = null"
+				   ng-click="filters.title = null; filter()"
 				   ng-show="filters.title"></i>
 				<label for="board-filtersr-input-task-title">Title</label>
 			</div>
 		</div>
 
 		<div class="row">
-			<div class="col s12" input-field>
+			<div class="col s12 input-field">
 				<select id="board-filters-select-priority"
+						ng-change="filter()"
 						ng-model="filters.priority"
-						ng-options="priority.value as priority.name for priority in taskPriorities"
+						ng-options="::priority.value as priority.name for priority in taskPriorities"
 						material-select>
 					<option value="">All</option>
 				</select>
@@ -147,10 +149,11 @@
 		</div>
 
 		<div class="row">
-			<div class="col s12" input-field>
+			<div class="col s12 input-field">
 				<select id="board-filters-select-label"
+						ng-change="filter()"
 						ng-model="filters.labelId"
-						ng-options="label.id as label.name for (id, label) in labels"
+						ng-options="::label.id as label.name for (id, label) in labels"
 						material-select>
 					<option value="">All</option>
 				</select>
@@ -159,26 +162,30 @@
 		</div>
 
 		<div class="row">
-			<div class="col s12" input-field>
+			<div class="col s12 input-field">
 				<select id="board-filters-select-assignee"
+						ng-change="filter()"
 						ng-model="filters.assigneeId"
-						ng-options="member.userId as member.username for member in board.members"
+						ng-options="::member.userId as member.username for member in board.members"
 						material-select>
 					<option value="">All</option>
 				</select>
 				<label for="board-filters-select-assignee">Assignee</label>
 			</div>
 		</div>
-	</form>
 
-	<div class="row">
-		<div class="col s12">
-			<a id="board-filters-button-hide" href="" class="btn-flat teal-text">
-				hide
-			</a>
-			<button id="board-filters-button-clear-all" class="btn-flat" ng-click="clearAllFilters()">
-				clear all
-			</button>
+		<div class="row">
+			<div class="col s12">
+				<button id="board-filters-button-hide"
+						class="btn-flat teal-text"
+						ng-click="view.filters = false"
+						sidenav-hide>
+					hide
+				</button>
+				<button id="board-filters-button-clear-all" class="btn-flat" ng-click="clearAllFilters()">
+					clear all
+				</button>
+			</div>
 		</div>
 	</div>
 </div>
