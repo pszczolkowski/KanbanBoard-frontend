@@ -20,6 +20,13 @@
 			setPermissions: {
 				url: config.apiUrl + '/board/member/permissions',
 				method: 'POST'
+			},
+			leave: {
+				url: config.apiUrl + '/board/:boardId/leave',
+				method: 'POST',
+				params: {
+					boardId: '@boardId'
+				}
 			}
 		});
 	}

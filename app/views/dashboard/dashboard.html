@@ -22,6 +22,11 @@
 					<i class="fa fa-ellipsis-v fa-lg grey-text"></i>
 				</a>
 				<ul id='dashboard-board-options-{{::board.id}}' class='dropdown-content'>
+					<li ng-if="::!board.loggedUserIsAdmin || board.numberOfAdmins > 1">
+						<a href="" ng-click="leaveBoard(board); $event.stopPropagation()">
+							leave
+						</a>
+					</li>
 					<li ng-if="::board.loggedUserIsAdmin">
 						<a href="" ng-click="deleteBoard(board); $event.stopPropagation()">
 							delete

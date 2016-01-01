@@ -19,12 +19,14 @@
 		$scope.boards = prepareBoards(boards);
 		$scope.openBoardCreator = openBoardCreator;
 		$scope.openBoard = openBoard;
+		$scope.leaveBoard = leaveBoard;
 		$scope.deleteBoard = deleteBoard;
 
 
 		function prepareBoards(boards) {
 			angular.forEach(boards, function (board) {
 				board.loggedUserIsAdmin = chechIfLoggedUserIsAdminOf(board);
+				board.numberOfAdmins = countAdminsOf(board);
 			});
 
 			return boards;
@@ -38,6 +40,17 @@
 			}
 
 			return false;
+		}
+
+		function countAdminsOf(board) {
+			var numberOfAdmins = 0;
+			angular.forEach(board.members, function (member) {
+				if (member.permissions === 'ADMIN') {
+					numberOfAdmins += 1;
+				}
+			});
+
+			return numberOfAdmins;
 		}
 
 		function openBoardCreator() {
@@ -57,6 +70,20 @@
 
 		function openBoard(board) {
 			$state.go('board', {boardId: board.id});
+		}
+
+		function leaveBoard(board) {
+			$confirm('Are you sure you want to leave the board ' + board.name + '?')
+				.then(function () {
+					Board.leave({
+						boardId: board.id
+					}).$promise.then(function () {
+							toaster.pop('success', 'You have left the board');
+							reloadBoards();
+						}, function () {
+							toaster.pop('error', 'Some error occcurred');
+						});
+				});
 		}
 
 		function deleteBoard(board) {
