@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col s12 m10 push-m1 l6 push-l3">
-		<ul class="collection">
+		<ul class="collection optionsable">
 			<li class="collection-item with-icon clickable"
 				ng-repeat="board in boards"
 				ng-click="openBoard(board)">
@@ -11,6 +11,23 @@
 				<strong>
 					{{board.name}}
 				</strong>
+
+				<a href=""
+				   class="options"
+				   data-activates='dashboard-board-options-{{::board.id}}'
+				   data-alignment="right"
+				   data-constrainwidth="false"
+				   ng-click="$event.stopPropagation()"
+				   dropdown>
+					<i class="fa fa-ellipsis-v fa-lg grey-text"></i>
+				</a>
+				<ul id='dashboard-board-options-{{::board.id}}' class='dropdown-content'>
+					<li ng-if="::board.loggedUserIsAdmin">
+						<a href="" ng-click="deleteBoard(board); $event.stopPropagation()">
+							delete
+						</a>
+					</li>
+				</ul>
 			</li>
 		</ul>
 
