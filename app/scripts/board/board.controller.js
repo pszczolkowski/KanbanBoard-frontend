@@ -18,6 +18,7 @@
 		'Column',
 		'columns',
 		'labels',
+		'LoggedUser',
 		'Task',
 		'TaskCreator',
 		'TaskDetails',
@@ -25,8 +26,8 @@
 		'taskPriority',
 		'toaster'];
 
-	function BoardController($scope, $confirm, board, Column, columns, labels, Task, TaskCreator, TaskDetails,
-							 taskFilter, taskPriority, toaster) {
+	function BoardController($scope, $confirm, board, Column, columns, labels, LoggedUser, Task, TaskCreator,
+							 TaskDetails, taskFilter, taskPriority, toaster) {
 		$scope.board = board;
 		$scope.columns = columns;
 		$scope.labels = prepareLabelsFrom(labels);
@@ -39,6 +40,7 @@
 		};
 		$scope.view = view;
 		$scope.numberOfHiddenTasks = 0;
+		$scope.loggedUserIsBoardAdmin = checkIfLoggedUserIsBoardAdmin();
 		$scope.openTaskCreator = openTaskCreator;
 		$scope.openTaskDetails = openTaskDetails;
 		$scope.deleteTask = deleteTask;
@@ -68,6 +70,16 @@
 			}
 
 			return result;
+		}
+
+		function checkIfLoggedUserIsBoardAdmin() {
+			for (var i = 0; i < board.members.length; i++) {
+				if (board.members[i].userId === LoggedUser.id && board.members[i].permissions === 'ADMIN') {
+					return true;
+				}
+			}
+
+			return false;
 		}
 
 		function openTaskCreator() {

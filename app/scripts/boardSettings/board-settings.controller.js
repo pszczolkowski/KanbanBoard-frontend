@@ -14,9 +14,11 @@
 		'ColumnCreator',
 		'ColumnDeleteModal',
 		'columns',
+		'LoggedUser',
 		'toaster'];
 
-	function BoardSettingsController($scope, $alert, $state, board, Column, ColumnCreator, ColumnDeleteModal, columns, toaster) {
+	function BoardSettingsController($scope, $alert, $state, board, Column, ColumnCreator, ColumnDeleteModal, columns,
+									 LoggedUser, toaster) {
 		$scope.columns = columns;
 		$scope.expandedColumn = {
 			index: null
@@ -28,10 +30,20 @@
 		$scope.deleteColumn = deleteColumn;
 		$scope.setWip = setWip;
 
-		if (!board.isLoggedUserBoardAdmin) {
+		if (loggedUserIsNotBoardAdmin()) {
 			$state.go('error-403', {}, {location: 'replace'});
 		}
 
+
+		function loggedUserIsNotBoardAdmin() {
+			for (var i = 0; i < board.members.length; i++) {
+				if (board.members[i].userId === LoggedUser.id && board.members[i].permissions === 'ADMIN') {
+					return false;
+				}
+			}
+
+			return true;
+		}
 
 		function handleError() {
 			toaster.pop('error', 'Some error occurred');
