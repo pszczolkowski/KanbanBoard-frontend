@@ -38,6 +38,7 @@
 			orderChanged: onTaskMove
 		};
 		$scope.view = view;
+		$scope.numberOfHiddenTasks = 0;
 		$scope.openTaskCreator = openTaskCreator;
 		$scope.openTaskDetails = openTaskDetails;
 		$scope.deleteTask = deleteTask;
@@ -182,6 +183,13 @@
 
 		function filter() {
 			angular.forEach($scope.columns, filterColumn);
+
+			$scope.numberOfHiddenTasks = 0;
+			angular.forEach($scope.columns, function (column) {
+				if (column.tasks.length !== column.filteredTasks.length) {
+					$scope.numberOfHiddenTasks += column.tasks.length - column.filteredTasks.length;
+				}
+			});
 		}
 
 		function filterColumn(column) {

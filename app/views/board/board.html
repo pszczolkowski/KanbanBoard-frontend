@@ -92,6 +92,15 @@
 			</tr>
 			</tbody>
 		</table>
+
+	</div>
+
+	<div id="board-info-hidden-tasks" class="grey darken-3 white-text left-align" ng-if="numberOfHiddenTasks > 0">
+		<span ng-if="numberOfHiddenTasks === 1">One task hidden due to filters</span>
+		<span ng-if="numberOfHiddenTasks > 1">{{numberOfHiddenTasks}} tasks hidden due to filters</span>
+		<button class="btn-flat orange-text right" ng-click="clearAllFilters()">
+			show all
+		</button>
 	</div>
 </div>
 
