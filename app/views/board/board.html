@@ -19,7 +19,7 @@
 			<tr>
 				<td ng-repeat="column in columns track by column.id"
 					as-sortable="dragListeners"
-					ng-model="column.tasks">
+					ng-model="column.filteredTasks">
 					<div class="task"
 						 ng-repeat="task in column.filteredTasks"
 						 ng-click="openTaskDetails(task)"

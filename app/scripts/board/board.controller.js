@@ -89,19 +89,31 @@
 						$scope.columns[i] = column;
 					}
 				}
+
+				filterColumn(column);
 			});
 		}
 
 		function onTaskMove(event) {
 			var task = event.source.itemScope.modelValue;
+			var previousColumn = event.source.sortableScope.$parent.column;
 			var column = event.dest.sortableScope.$parent.column;
 			var position = event.dest.index;
+
+			if (column.filteredTasks.length === 1) {
+				position = column.tasks.length;
+			} else if (position > 0) {
+				position = column.filteredTasks[position - 1].position + 1;
+			} else if (column.filteredTasks[1].position > 0) {
+				position = column.filteredTasks[1].position - 1;
+			}
 
 			Task.move({
 				taskId: task.id,
 				columnId: column.id,
 				position: position
 			}).$promise.finally(function () {
+					reloadColumn(previousColumn.id);
 					reloadColumn(column.id);
 				});
 		}
@@ -169,9 +181,11 @@
 		}
 
 		function filter() {
-			angular.forEach($scope.columns, function (column) {
-				column.filteredTasks = taskFilter(column.tasks, $scope.filters);
-			});
+			angular.forEach($scope.columns, filterColumn);
+		}
+
+		function filterColumn(column) {
+			column.filteredTasks = taskFilter(column.tasks, $scope.filters);
 		}
 
 		function clearAllFilters() {
