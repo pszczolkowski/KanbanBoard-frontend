@@ -11,10 +11,17 @@
 		$stateProvider.state('register', {
 			parent: 'root',
 			url: '/register',
-			templateUrl: 'views/register/register.html',
-			controller: 'RegisterController',
-			ncyBreadcrumb: {
-				hide: true
+			views: {
+				'': {
+					templateUrl: 'views/register/register.html',
+					controller: 'RegisterController'
+				},
+				'navbar-fragment@root': {
+					templateUrl: 'views/register/navbarFragment.html'
+				}
+			},
+			navbar: {
+				menu: false
 			}
 		});
 	}

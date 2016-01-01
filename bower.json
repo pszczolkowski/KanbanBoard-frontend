@@ -14,7 +14,6 @@
     "materialize": "materialize#~0.97.3",
     "angular-materialize": "*",
     "angular-loading-bar": "~0.8.0",
-    "angular-breadcrumb": "~0.4.1",
     "ng-sortable": "~1.3.2",
     "angular-xeditable": "~0.1.9",
     "angular-truncate": "*"

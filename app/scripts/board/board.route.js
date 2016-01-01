@@ -15,10 +15,18 @@
 		$stateProvider.state('board', {
 			parent: 'root',
 			url: '/board/{boardId:int}',
-			templateUrl: 'views/board/board.html',
-			controller: 'BoardController',
-			ncyBreadcrumb: {
-				label: 'Board'
+			views: {
+				'': {
+					templateUrl: 'views/board/board.html',
+					controller: 'BoardController'
+				},
+				'navbar-fragment@root': {
+					templateUrl: 'views/board/navbarFragment.html',
+					controller: 'BoardController'
+				}
+			},
+			navbar: {
+				name: 'Board'
 			},
 			resolve: {
 				board: resolveBoard,

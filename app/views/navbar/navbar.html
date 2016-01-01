@@ -1,37 +1,45 @@
-<ul id="userDropdown" class="dropdown-content">
-	<li>
-		<a href="" ng-click="logout()"><span class="fa fa-sign-out"></span>&nbsp;Logout</a>
-	</li>
-</ul>
-
 <nav>
 	<div class="nav-wrapper blue">
 
-		<div ncy-breadcrumb />
+		<div id="slide-out" class="side-nav">
+			<div id="menu-identity">
+				<i class="material-icons left">person</i>
+				<span class="left">
+					<strong>{{identity.username}}</strong>
+					<span class="grey-text">({{identity.login}})</span>
+				</span>
+			</div>
 
-		<ul class="right" ng-if="!identity.username">
-			<li ng-show="state.current.name === 'login'">
-				<a ui-sref="register">
-					<span class="fa fa-user-plus"></span>
-					Sign up
-				</a>
-			</li>
-			<li ng-show="state.current.name === 'register'">
-				<a ui-sref="login">
-					<span class="fa fa-sign-in"></span>
-					Sign in
-				</a>
-			</li>
-		</ul>
+			<ul >
+				<li>
+					<a ui-sref="dashboard">My boards</a>
+				</li>
+				<li class="divider"></li>
+				<li>
+					<a href="" ng-click="logout()">Logout</a>
+				</li>
+			</ul>
+		</div>
 
-		<ul class="right" ng-show="identity.username">
-			<li>
-				<a href="" class="dropdown-button" data-activates="userDropdown" dropdown data-beloworigin="true" data-constrainwidth="false">
-					{{identity.username}}
-					<span class="fa fa-caret-down"></span>
-				</a>
-			</li>
-		</ul>
+		<div class="left">
+			<ul>
+				<li ng-if="!state.return && state.menu !== false">
+					<a href="#" class="button-collapse show-on-large" data-activates="slide-out" sidenav-show="left" data-menuwidth="300" data-closeonclick="true">
+						<i class="material-icons">menu</i>
+					</a>
+				</li>
+				<li ng-if="state.return">
+					<a ui-sref="{{state.return}}">
+						<i class="material-icons">arrow_back</i>
+					</a>
+				</li>
+			</ul>
+
+		</div>
+
+		<strong>{{state.name}}</strong>
+
+		<div class="right" ui-view="navbar-fragment"></div>
 
 	</div>
 </nav>

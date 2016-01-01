@@ -34,7 +34,6 @@ module.exports = function(config) {
       'bower_components/materialize/bin/materialize.js',
       'bower_components/angular-materialize/src/angular-materialize.js',
       'bower_components/angular-loading-bar/build/loading-bar.js',
-      'bower_components/angular-breadcrumb/release/angular-breadcrumb.js',
       'bower_components/ng-sortable/dist/ng-sortable.js',
       'bower_components/angular-xeditable/dist/js/xeditable.js',
       'bower_components/angular-truncate/src/truncate.js',

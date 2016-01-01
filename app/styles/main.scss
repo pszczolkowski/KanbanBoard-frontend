@@ -8,6 +8,7 @@ $fa-font-path: "../bower_components/components-font-awesome/fonts" !default;
 
 @import "board/board";
 @import "login/login";
+@import "navbar/_navbar";
 @import "modal/modal";
 
 html,
@@ -20,13 +21,6 @@ body {
 body {
 	display: flex;
 	flex-direction: column;
-}
-
-.navbar-fixed {
-	flex-shrink: 0;
-}
-#navbar {
-	margin-bottom: 10px;
 }
 
 #main-body {

@@ -13,10 +13,10 @@
 		var resolveLabels = ['$stateParams', 'Label', loadLabels];
 
 		$stateProvider.state('boardSettings', {
-			parent: 'root',
-			url: '/board/{boardId:int}/settings',
+			parent: 'board',
+			url: '/settings',
 			views: {
-				'': {
+				'@root': {
 					templateUrl: 'views/boardSettings/settings.html'
 				},
 				'board-settings-board@boardSettings': {
@@ -30,11 +30,12 @@
 				'board-settings-labels@boardSettings': {
 					controller: 'BoardLabelsSettingsController',
 					templateUrl: 'views/boardSettings/labels.html'
-				}
+				},
+				'navbar-fragment@root': {}
 			},
-			ncyBreadcrumb: {
-				label: 'Settings',
-				parent: 'board'
+			navbar: {
+				name: 'Board settings',
+				return: 'board'
 			},
 			resolve: {
 				board: resolveBoard,

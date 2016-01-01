@@ -6,7 +6,6 @@
 			'angular-loading-bar',
 			'as.sortable',
 			'LocalStorageModule',
-			'ncy-angular-breadcrumb',
 			'ngAnimate',
 			'ngCookies',
 			'ngResource',
