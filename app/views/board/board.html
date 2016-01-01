@@ -1,7 +1,11 @@
 <div id="board-container">
 
 	<div id="board-table-wrapper" class="center-align">
-		<table id="table" class="z-depth-1">
+		<div class="card-panel blue lighten-2 white-text center" ng-if="::columns.length === 0">
+			Board has no columns yet
+		</div>
+		
+		<table id="table" class="z-depth-1" ng-if="::columns.length > 0">
 			<thead>
 			<tr>
 				<th ng-repeat="column in columns track by column.id">
