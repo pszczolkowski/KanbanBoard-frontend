@@ -47,7 +47,7 @@
 				return Task.update({
 					id: $scope.task.id,
 					title: $scope.task.title,
-					description: $scope.task.description.length === 0 ? null : $scope.task.description,
+					description: !$scope.task.description ? null : $scope.task.description,
 					priority: $scope.task.priority
 				}).$promise;
 			} else {
