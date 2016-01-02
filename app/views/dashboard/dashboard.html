@@ -11,6 +11,15 @@
 				<strong>
 					{{board.name}}
 				</strong>
+				<br />
+				<small class="grey-text">
+					<span ng-if="::board.members.length === 1">
+						You are the only member
+					</span>
+					<span ng-if="::board.members.length > 1">
+						Members: {{board.members | membersFilter}}
+					</span>
+				</small>
 
 				<a href=""
 				   class="options"
