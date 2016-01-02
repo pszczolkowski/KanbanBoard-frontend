@@ -37,6 +37,8 @@ module.exports = function(config) {
       'bower_components/ng-sortable/dist/ng-sortable.js',
       'bower_components/angular-xeditable/dist/js/xeditable.js',
       'bower_components/angular-truncate/src/truncate.js',
+      'bower_components/Chart.js/Chart.js',
+      'bower_components/angular-chart.js/dist/angular-chart.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",
