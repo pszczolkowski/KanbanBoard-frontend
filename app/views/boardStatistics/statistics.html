@@ -1,0 +1,17 @@
+<div class="row">
+	<div class="col s12">
+		Distribution by:
+		<select ng-model="chart.type"
+				ng-change="loadStatistics()"
+				ng-options="::type.value as type.name for type in chartTypes"
+				material-select>
+		</select>
+	</div>
+</div>
+
+<canvas class="chart chart-pie"
+		chart-data="values"
+		chart-labels="labels"
+		chart-legend="true"
+		chart-options="{animationEasing: 'easeInOutQuart', animationSteps: 50}">
+</canvas>
