@@ -8,7 +8,8 @@
 		<table id="table" class="z-depth-1" ng-if="::columns.length > 0">
 			<thead>
 			<tr>
-				<th ng-repeat="column in columns track by column.id">
+				<th ng-repeat="column in columns track by column.id"
+					ng-class="{'red-text text-darken-2': column.workInProgressLimit && column.tasks.length > column.workInProgressLimit}">
 					{{::column.name}}
 					<small>
 						[{{column.tasks.length}}<!--
