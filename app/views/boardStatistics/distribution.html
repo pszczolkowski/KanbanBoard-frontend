@@ -1,0 +1,85 @@
+<div class="row row-compact">
+	<div class="col s12 m4 l2">
+		Distribution by:
+	</div>
+	<div class="col m8 l10 hide-on-small-and-down">
+		Where:
+	</div>
+</div>
+
+<div class="row row-compact">
+	<div class="col s12 m4 l3 input-field">
+		<select ng-model="chart.type"
+				ng-change="loadStatistics()"
+				ng-options="::type.value as type.name for type in chartTypes"
+				material-select>
+		</select>
+	</div>
+
+	<div class="col s12 hide-on-med-and-up">
+		Where:
+	</div>
+
+	<div class="col s6 m2 l2 input-field">
+		<select id="board-statistics-select-column"
+				ng-model="filters.columnId"
+				ng-change="loadStatistics()"
+				ng-options="::column.id as column.name for column in columns"
+				material-select>
+			<option value="">All</option>
+		</select>
+		<label for="board-statistics-select-column">Column</label>
+	</div>
+
+	<div class="col s6 m2 l2 input-field">
+		<select id="board-statistics-select-priority"
+				ng-change="loadStatistics()"
+				ng-model="filters.priority"
+				ng-options="::priority.value as priority.name for priority in taskPriorities"
+				material-select>
+			<option value="">All</option>
+		</select>
+		<label for="board-statistics-select-priority">Priority</label>
+	</div>
+
+	<div class="col s6 m2 l2 input-field">
+		<select id="board-statistics-select-label"
+				ng-model="filters.labelId"
+				ng-change="loadStatistics()"
+				ng-options="::boardLabel.id as boardLabel.name for boardLabel in boardLabels"
+				material-select>
+			<option value="">All</option>
+		</select>
+		<label for="board-statistics-select-label">Label</label>
+	</div>
+
+	<div class="col s6 m2 l2 input-field">
+		<select id="board-statistics-select-assignee"
+				ng-change="loadStatistics()"
+				ng-model="filters.assigneeId"
+				ng-options="::member.userId as member.username for member in board.members"
+				material-select>
+			<option value="">All</option>
+		</select>
+		<label for="board-statistics-select-assignee">Assignee</label>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col s12">
+		<div class="card-panel blue lighten-2 white-text center" ng-show="values.length === 0">
+			No data match given criteria
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col s12 m10 offset-m1 l8 offset-l2" ng-show="labels.length > 0">
+		<canvas class="chart chart-pie"
+				chart-data="values"
+				chart-labels="labels"
+				chart-legend="true"
+				chart-options="{animationEasing: 'easeInOutQuart', animationSteps: 50}">
+		</canvas>
+	</div>
+</div>

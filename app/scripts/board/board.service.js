@@ -27,6 +27,10 @@
 				params: {
 					boardId: '@boardId'
 				}
+			},
+			history: {
+				url: config.apiUrl + '/board/:boardId/history',
+				method: 'GET'
 			}
 		});
 	}

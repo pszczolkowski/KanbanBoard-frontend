@@ -13,7 +13,8 @@
 
 			for (var i = 0; i < tasks.length; i++) {
 				if (titleContains(tasks[i], title) && priorityMatches(tasks[i], filters.priority) &&
-					labelMatches(tasks[i], filters.labelId) && assigneeMatches(tasks[i], filters.assigneeId)) {
+					labelMatches(tasks[i], filters.labelId) && assigneeMatches(tasks[i], filters.assigneeId) &&
+					columnMatches(tasks[i], filters.columnId)) {
 					result.push(tasks[i]);
 				}
 			}
@@ -36,6 +37,10 @@
 
 		function assigneeMatches(task, assigneeId) {
 			return !assigneeId || task.assigneeId === assigneeId;
+		}
+
+		function columnMatches(task, columnId) {
+			return !columnId || task.columnId === columnId;
 		}
 	}
 })();

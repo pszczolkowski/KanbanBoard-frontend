@@ -1,0 +1,41 @@
+<div id="board-statistics-preloader-wrapper" ng-show="loading">
+	<div class="preloader-wrapper big active" >
+		<div class="spinner-layer spinner-blue-only">
+			<div class="circle-clipper left">
+				<div class="circle"></div>
+			</div>
+			<div class="gap-patch">
+				<div class="circle"></div>
+			</div>
+			<div class="circle-clipper right">
+				<div class="circle"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row" ng-show="error">
+	<div class="col s12">
+		<div class="card-panel red white-text center">
+			Could not fetch data
+			<button class="btn-flat amber-text text-lighten-3" ng-click="load()">
+				try again
+			</button>
+		</div>
+	</div>
+</div>
+
+<div class="row" ng-show="tooLittleData">
+	<div class="col s12">
+		<div class="card-panel blue lighten-2 white-text center">
+			Too little data to display cumulative flow diagram
+		</div>
+	</div>
+</div>
+
+<div id="board-statistics-cumulative-vlow-diagram-container" ng-if="labels.length > 3 && !loading">
+	<canvas id="line" class="chart chart-line" chart-data="data"
+			chart-labels="labels" chart-legend="true" chart-series="series"
+			chart-options="{bezierCurve: false, pointDotRadius: 3}">
+	</canvas>
+</div>

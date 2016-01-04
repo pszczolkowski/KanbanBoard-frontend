@@ -5,6 +5,7 @@
 		.module('kanbanBoardApp', [
 			'angular-loading-bar',
 			'as.sortable',
+			'chart.js',
 			'LocalStorageModule',
 			'ngAnimate',
 			'ngCookies',
