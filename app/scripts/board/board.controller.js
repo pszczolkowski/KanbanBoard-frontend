@@ -113,7 +113,8 @@
 			var column = event.dest.sortableScope.$parent.column;
 			var position = event.dest.index;
 
-			if (column.workInProgressLimit && column.tasks.length >= column.workInProgressLimit) {
+			if (column.workInProgressLimit && column.tasks.length >= column.workInProgressLimit &&
+				previousColumn.id !== column.id) {
 				$confirm('You will exceed work in progress limit. Are you sure?')
 					.then(moveTask, function () {
 						var previousIndex = event.source.index;
@@ -126,12 +127,14 @@
 
 
 			function moveTask() {
-				if (column.filteredTasks.length === 1) {
-					position = column.tasks.length;
-				} else if (position > 0) {
-					position = column.filteredTasks[position - 1].position + 1;
-				} else if (column.filteredTasks[1].position > 0) {
-					position = column.filteredTasks[1].position - 1;
+				if (previousColumn.id !== column.id) {
+					if (column.filteredTasks.length === 1) {
+						position = column.tasks.length;
+					} else if (position > 0) {
+						position = column.filteredTasks[position - 1].position + 1;
+					} else if (column.filteredTasks[1].position > 0) {
+						position = column.filteredTasks[1].position - 1;
+					}
 				}
 
 				Task.move({
