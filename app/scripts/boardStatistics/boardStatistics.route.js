@@ -8,14 +8,31 @@
 	BoardStatisticsRouteProvider.$inject = ['$stateProvider'];
 
 	function BoardStatisticsRouteProvider($stateProvider) {
-		$stateProvider.state('board.statistics', {
-			url: '/statistics',
+		$stateProvider.state('board.statistics-distribution', {
+			url: '/statistics/distribution',
 			views: {
 				'@root': {
-					templateUrl: 'views/boardStatistics/statistics.html',
-					controller: 'BoardStatisticsController'
+					templateUrl: 'views/boardStatistics/distribution.html',
+					controller: 'BoardStatisticsDistributionController'
 				},
-				'navbar-fragment@root': {}
+				'navbar-fragment@root': {
+					templateUrl: 'views/boardStatistics/navbarFragment.html'
+				}
+			},
+			navbar: {
+				name: 'Board statistics',
+				return: 'board'
+			}
+		}).state('board.statistics-cumulativeFlow', {
+			url: '/statistics/cumulativeFlow',
+			views: {
+				'@root': {
+					templateUrl: 'views/boardStatistics/cumulativeFlow.html',
+					controller: 'BoardStatisticsCumulativeFlowController'
+				},
+				'navbar-fragment@root': {
+					templateUrl: 'views/boardStatistics/navbarFragment.html'
+				}
 			},
 			navbar: {
 				name: 'Board statistics',

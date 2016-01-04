@@ -26,7 +26,7 @@
 
 <ul id="board-settings-menu" class="dropdown-content">
 	<li>
-		<a ui-sref="board.statistics({boardId: board.id})">statistics</a>
+		<a ui-sref="board.statistics-distribution({boardId: board.id})">statistics</a>
 	</li>
 	<li ng-if="::loggedUserIsBoardAdmin">
 		<a ui-sref="boardSettings({boardId: board.id})">board settings</a>

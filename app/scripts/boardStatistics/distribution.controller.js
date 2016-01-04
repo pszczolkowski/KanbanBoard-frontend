@@ -3,9 +3,9 @@
 
 	angular
 		.module('kanbanBoardApp')
-		.controller('BoardStatisticsController', BoardStatisticsController);
+		.controller('BoardStatisticsDistributionController', BoardStatisticsDistributionController);
 
-	BoardStatisticsController.$inject = [
+	BoardStatisticsDistributionController.$inject = [
 		'$scope',
 		'board',
 		'columns',
@@ -13,7 +13,7 @@
 		'taskFilterFilter',
 		'taskPriority'];
 
-	function BoardStatisticsController($scope, board, columns, labels, taskFilter, taskPriority) {
+	function BoardStatisticsDistributionController($scope, board, columns, labels, taskFilter, taskPriority) {
 		$scope.chart = {
 			type: 'COLUMN'
 		};
