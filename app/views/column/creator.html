@@ -30,7 +30,7 @@
 		</div>
 
 		<div class="row row-compact">
-			<div class="col s12" input-field>
+			<div class="col s6" input-field>
 				<input type="number"
 					   id="column-creator-input-column-wip"
 					   min="0"
@@ -44,6 +44,15 @@
 						Only positive numbers are allowed
 					</p>
 				</div>
+			</div>
+
+			<div class="col s6" input-field>
+				<select id="column-creator-select-wip-type"
+						ng-model="column.wipType"
+						ng-options="type.value as type.name for type in wipTypes"
+						material-select>
+				</select>
+				<label for="column-creator-select-wip-type">Work in progress limit type</label>
 			</div>
 		</div>
 

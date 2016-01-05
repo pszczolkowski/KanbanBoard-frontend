@@ -10,16 +10,19 @@
 		'$uibModalInstance',
 		'board',
 		'Column',
+		'columnWipTypes',
 		'toaster'];
 
-	function ColumnCreatorController($scope, $uibModalInstance, board, Column, toaster) {
+	function ColumnCreatorController($scope, $uibModalInstance, board, Column, columnWipTypes, toaster) {
 		$scope.column = {
 			name: '',
-			wip: 0
+			wip: 0,
+			wipType: 'QUANTITY'
 		};
 		$scope.errors = {
 			duplicatedName: false
 		};
+		$scope.wipTypes = columnWipTypes;
 		$scope.add = add;
 
 
@@ -27,6 +30,7 @@
 			var column = new Column();
 			column.name = $scope.column.name;
 			column.workInProgressLimit = $scope.column.wip === 0 ? null : $scope.column.wip;
+			column.workInProgressLimitType = $scope.column.wipType;
 			column.boardId = board.id;
 
 			column.$save().then(function (createdColumn) {
