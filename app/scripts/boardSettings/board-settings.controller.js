@@ -135,7 +135,8 @@
 			Column.update({
 				id: column.id,
 				name: column.name,
-				workInProgressLimit: wip === 0 ? null : wip
+				workInProgressLimit: wip === 0 ? null : wip,
+				workInProgressLimitType: column.workInProgressLimitType
 			}).$promise.then(function () {
 				toaster.pop('success', 'WIP has been set');
 				reloadColumns();
