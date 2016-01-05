@@ -21,6 +21,7 @@
 				}
 			},
 			navbar: {
+				name: 'Sing in',
 				menu: false
 			}
 		});

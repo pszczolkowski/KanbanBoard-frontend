@@ -21,6 +21,7 @@
 				}
 			},
 			navbar: {
+				name: 'Sing up',
 				menu: false
 			}
 		});
