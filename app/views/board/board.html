@@ -4,18 +4,24 @@
 		<div class="card-panel blue lighten-2 white-text center" ng-if="::columns.length === 0">
 			Board has no columns yet
 		</div>
-		
+
 		<table id="table" class="z-depth-1" ng-if="::columns.length > 0">
 			<thead>
 			<tr>
 				<th ng-repeat="column in columns track by column.id"
-					ng-class="{'red-text text-darken-2': column.workInProgressLimit && column.tasks.length > column.workInProgressLimit}">
+					ng-class="{'red-text text-darken-2': column.workInProgressLimitExceeded}">
 					{{::column.name}}
 					<small>
-						[{{column.tasks.length}}<!--
-					--><span ng-if="column.workInProgressLimit > 0">
-						/ {{column.workInProgressLimit}}<!--
-					--></span>]
+						[
+						<span ng-if="::column.workInProgressLimitType === 'QUANTITY'">
+							{{column.tasks.length}}
+						</span>
+						<span ng-if="::column.workInProgressLimitType === 'SIZE'">
+							{{column.tasksSizeSum}}
+						</span>
+					<span ng-if="column.workInProgressLimit > 0">
+						/ {{column.workInProgressLimit}}
+					</span>]
 					</small>
 				</th>
 			</tr>
