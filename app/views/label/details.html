@@ -1,0 +1,57 @@
+<div class="modal-content">
+
+	<h4>Edit label</h4>
+
+	<form name="updateLabelForm">
+
+		<div class="row row-compact">
+			<div class="col s12" input-field>
+				<input type="text"
+					   id="label-details-input-label-name"
+					   name="name"
+					   ng-change="errors.duplicatedName = false"
+					   ng-model="label.name"
+					   ng-maxlength="100"
+					   required autofocus/>
+				<label for="label-details-input-label-name">Name</label>
+
+				<div class="error-message">
+					<p ng-show="updateLabelForm.name.$dirty && updateLabelForm.name.$error.maxlength">
+						Too long (maximum 100 characters)
+					</p>
+					<p ng-show="updateLabelForm.name.$dirty && updateLabelForm.name.$error.required">
+						Name is required
+					</p>
+					<p ng-show="errors.duplicatedName">
+						Label with given name already exists
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="row row-compact">
+			<div class="col s12">
+				Color:
+				<div>
+					<button type="button" class="btn btn-floating label-sample" ng-repeat="color in colors" board-label="{{color}}" ng-click="label.color = color">
+						<span class="fa fa-lg fa-check" ng-show="label.color === color"></span>
+					</button>
+				</div>
+			</div>
+		</div>
+
+	</form>
+
+</div>
+
+<div class="modal-footer">
+	<button class="waves-effect waves-green btn-flat green-text"
+			ng-click="save()"
+			ng-disabled="updateLabelForm.$invalid">
+		Save
+	</button>
+	<button class="waves-effect waves-red btn-flat red-text"
+			ng-click="$dismiss()">
+		Cancel
+	</button>
+</div>

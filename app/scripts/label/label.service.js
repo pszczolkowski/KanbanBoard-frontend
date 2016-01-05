@@ -10,6 +10,11 @@
 	function Label($resource, config) {
 		return $resource(config.apiUrl + '/label/:labelId', {
 			labelId: '@id'
+		}, {
+			update: {
+				url: config.apiUrl + '/label',
+				method: 'PUT'
+			}
 		});
 	}
 })();
