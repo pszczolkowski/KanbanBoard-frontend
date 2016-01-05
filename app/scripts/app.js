@@ -13,7 +13,6 @@
 			'toaster',
 			'truncate',
 			'ui.materialize',
-			'ui.router',
-			'xeditable'
+			'ui.router'
 		]);
 })();
