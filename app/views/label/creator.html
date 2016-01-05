@@ -13,13 +13,13 @@
 					   ng-model="label.name"
 					   ng-maxlength="100"
 					   required autofocus/>
-				<label for="label-creator-input-label-name">Title</label>
+				<label for="label-creator-input-label-name">Label</label>
 
 				<div class="error-message">
-					<p ng-show="newLabelForm.title.$dirty && newLabelForm.title.$error.maxlength">
+					<p ng-show="newLabelForm.name.$dirty && newLabelForm.name.$error.maxlength">
 						Too long (maximum 100 characters)
 					</p>
-					<p ng-show="newLabelForm.title.$dirty && newLabelForm.title.$error.required">
+					<p ng-show="newLabelForm.name.$dirty && newLabelForm.name.$error.required">
 						Name is required
 					</p>
 					<p ng-show="errors.duplicatedName">
@@ -32,10 +32,6 @@
 		<div class="row row-compact">
 			<div class="col s12">
 				Color:
-				<!--<button type="button" board-label="{{label.color}}" class="btn btn-floating" ng-if="label.color" ng-click="label.color = null">-->
-					<!--<i class="fa fa-pencil"></i>-->
-				<!--</button>-->
-
 				<div>
 					<button type="button" class="btn btn-floating label-sample" ng-repeat="color in colors" board-label="{{color}}" ng-click="label.color = color">
 						<span class="fa fa-lg fa-check" ng-show="label.color === color"></span>
