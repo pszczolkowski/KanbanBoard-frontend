@@ -93,7 +93,11 @@
 }
 
 #board-statistics-cumulative-vlow-diagram-container {
-	min-width: 800px;
+	overflow: auto;
+
+	.chart-container {
+		min-width: 800px;
+	}
 }
 
 // filters
