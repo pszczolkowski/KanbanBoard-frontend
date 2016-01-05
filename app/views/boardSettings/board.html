@@ -4,7 +4,16 @@
 			<li ng-repeat="column in columns track by column.id"
 				ng-class="{'active': expandedColumn.index === $index}">
 				<div class="collapsible-header" ng-click="expandColumn($index)">
-					{{column.name}}
+					<strong>{{column.name}}</strong>
+					<span class="grey-text" ng-if="column.workInProgressLimit">
+						(WIP: {{column.workInProgressLimit}} on
+							<span ng-if="column.workInProgressLimitType === 'QUANTITY'">task quantity</span><!--
+							--><span ng-if="column.workInProgressLimitType === 'SIZE'">task size</span><!--
+						-->)
+					</span>
+					<span class="grey-text" ng-if="!column.workInProgressLimit">
+						(no WIP)
+					</span>
 					<a href="" class="right">
 						<i class="fa" ng-class="{'fa-angle-double-down': expandedColumn.index !== $index,
 														 'fa-angle-double-up': expandedColumn.index === $index}"></i>
