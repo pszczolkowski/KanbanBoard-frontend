@@ -48,7 +48,7 @@
 		</div>
 
 		<div class="row row-compact">
-			<div class="col s12" input-field>
+			<div class="col s6" input-field>
 				<select id="task-details-select-label"
 						ng-model="task.labelId"
 						ng-options="label.id as label.name for label in labels"
@@ -56,6 +56,15 @@
 					<option value="">None</option>
 				</select>
 				<label for="task-details-select-label">Label</label>
+			</div>
+
+			<div class="col s6" input-field>
+				<select id="task-details-select-size"
+						ng-model="task.size"
+						ng-options="size as size for size in taskSizes"
+						material-select>
+				</select>
+				<label for="task-details-select-size">Size</label>
 			</div>
 		</div>
 
