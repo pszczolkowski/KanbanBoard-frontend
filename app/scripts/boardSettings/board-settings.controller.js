@@ -13,12 +13,13 @@
 		'Column',
 		'ColumnCreator',
 		'ColumnDeleteModal',
+		'ColumnDetails',
 		'columns',
 		'LoggedUser',
 		'toaster'];
 
-	function BoardSettingsController($scope, $alert, $state, board, Column, ColumnCreator, ColumnDeleteModal, columns,
-									 LoggedUser, toaster) {
+	function BoardSettingsController($scope, $alert, $state, board, Column, ColumnCreator, ColumnDeleteModal,
+									 ColumnDetails, columns, LoggedUser, toaster) {
 		$scope.columns = columns;
 		$scope.expandedColumn = {
 			index: null
@@ -27,8 +28,8 @@
 		$scope.moveColumnUp = moveColumnUp;
 		$scope.moveColumnDown = moveColumnDown;
 		$scope.openColumnCreator = openColumnCreator;
+		$scope.openColumnDetails = openColumnDetails;
 		$scope.deleteColumn = deleteColumn;
-		$scope.setWip = setWip;
 
 		if (loggedUserIsNotBoardAdmin()) {
 			$state.go('error-403', {}, {location: 'replace'});
@@ -102,6 +103,14 @@
 			});
 		}
 
+		function openColumnDetails(column) {
+			ColumnDetails.open({column: column})
+				.then(function () {
+					reloadColumns();
+					toaster.pop('success', 'Column saved');
+				});
+		}
+
 		function deleteColumn(column) {
 			if (column.tasks.length > 0) {
 				if ($scope.columns.length === 1) {
@@ -129,18 +138,6 @@
 						$scope.expandedColumn.index = null;
 					});
 				}, handleError);
-		}
-
-		function setWip(column, wip) {
-			Column.update({
-				id: column.id,
-				name: column.name,
-				workInProgressLimit: wip === 0 ? null : wip,
-				workInProgressLimitType: column.workInProgressLimitType
-			}).$promise.then(function () {
-				toaster.pop('success', 'WIP has been set');
-				reloadColumns();
-			}, handleError);
 		}
 	}
 })();

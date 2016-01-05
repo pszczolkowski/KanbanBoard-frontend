@@ -1,0 +1,73 @@
+<div class="modal-content">
+
+	<h4>Edit column</h4>
+
+	<form name="updateColumnForm">
+
+		<div class="row row-compact">
+			<div class="col s12" input-field>
+				<input type="text"
+					   id="column-details-input-column-name"
+					   name="name"
+					   ng-change="errors.duplicatedName = false"
+					   ng-model="column.name"
+					   ng-maxlength="30"
+					   required autofocus/>
+				<label for="column-details-input-column-name">Name</label>
+
+				<div class="error-message">
+					<p ng-show="updateColumnForm.name.$dirty && updateColumnForm.name.$error.maxlength">
+						Too long (maximum 30 characters)
+					</p>
+					<p ng-show="updateColumnForm.name.$dirty && updateColumnForm.name.$error.required">
+						Name is required
+					</p>
+					<p ng-show="errors.duplicatedName">
+						Column with given name already exists
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="row row-compact">
+			<div class="col s6" input-field>
+				<input type="number"
+					   id="column-details-input-column-wip"
+					   min="0"
+					   name="wip"
+					   ng-model="column.workInProgressLimit"
+					   required />
+				<label for="column-details-input-column-wip">Work in progress limit</label>
+
+				<div class="error-message">
+					<p ng-show="updateColumnForm.wip.$error.min">
+						Only positive numbers are allowed
+					</p>
+				</div>
+			</div>
+
+			<div class="col s6" input-field>
+				<select id="column-details-select-wip-type"
+						ng-model="column.workInProgressLimitType"
+						ng-options="type.value as type.name for type in wipTypes"
+						material-select>
+				</select>
+				<label for="column-details-select-wip-type">Work in progress limit type</label>
+			</div>
+		</div>
+
+	</form>
+
+</div>
+
+<div class="modal-footer">
+	<button class="waves-effect waves-green btn-flat green-text"
+			ng-click="save()"
+			ng-disabled="updateColumnForm.$invalid">
+		Save
+	</button>
+	<button class="waves-effect waves-red btn-flat red-text"
+			ng-click="$dismiss()">
+		Cancel
+	</button>
+</div>
