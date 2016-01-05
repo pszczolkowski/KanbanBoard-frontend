@@ -43,7 +43,7 @@
 			task.labelId = $scope.task.labelId;
 			task.assigneeId = $scope.task.assigneeId;
 			task.priority = $scope.task.priority.toUpperCase();
-			task.size = parseFloat($scope.task.size);
+			task.size = $scope.task.size;
 
 			task.$save().then(function (createdTask) {
 				$uibModalInstance.close(createdTask);
