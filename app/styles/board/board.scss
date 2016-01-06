@@ -6,6 +6,7 @@
 
 #board-table-wrapper {
 	flex-grow: 1;
+	overflow: auto;
 	padding: 0 10px 10px;
 }
 
@@ -17,6 +18,7 @@
 	td {
 		border: 1px solid #d0d0d0;
 		vertical-align: top;
+		width: 200px;
 	}
 
 	th {
@@ -24,9 +26,16 @@
 		height: 50px;
 		padding: 5px;
 		text-align: center;
+		width: 200px;
 
 		small {
 			font-weight: normal;
+		}
+	}
+
+	@media #{$small-and-down} {
+		th, td {
+			width: 50vw;
 		}
 	}
 
