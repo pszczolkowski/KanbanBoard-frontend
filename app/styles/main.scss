@@ -177,3 +177,15 @@ nav ul li {
 button.btn-flat:focus {
 	background-color: unset;
 }
+
+// Modal
+@media #{$small-and-down} {
+	.modal {
+		max-height: 95%;
+		width: 95%;
+	}
+
+	.modal .modal-content {
+		padding: 8px;
+	}
+}
