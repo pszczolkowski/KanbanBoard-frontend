@@ -3,7 +3,7 @@
 }
 
 #board-table-wrapper {
-	height: 100%;
+	height: calc(100% - 36px);
 	overflow: auto;
 	padding: 0 10px 10px;
 }
